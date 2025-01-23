@@ -1,0 +1,56 @@
+/* reset */
+*,
+::before,
+::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+img {
+  display: block;
+}
+
+button {
+  font-family: inherit;
+  color: inherit;
+}
+
+a {
+  color: inherit;
+}
+
+/* variables */
+:root {
+  /* colors */
+  --primary:;
+  --secondary:;
+  --black: #1c1c1c;
+  --white: #f7f7ff;
+
+  /* fonts */
+  --ff-main: 'Open Sans', serif;
+  --ff-title: 'Open Sans', serif;
+
+  /* font-sizes */
+  --fz-16: 1rem;
+  --fz-18: 1.125rem;
+  --fz-24: 1.5rem;
+  --fz-32: 2rem;
+}
+
+/* general */
+body {
+  background: var(--white);
+  color: var(--black);
+  font-family: var(--ff-main);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--ff-title);
+}
