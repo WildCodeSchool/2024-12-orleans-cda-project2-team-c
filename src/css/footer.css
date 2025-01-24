@@ -1,0 +1,39 @@
+footer {
+  position: relative;
+  padding: 16px 32px;
+  background: var(--blue-dark);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.footer__logo {
+  width: 167px;
+}
+
+.footer__logo img {
+  width: 100%;
+}
+
+.footer__network-container {
+  position: absolute;
+  right: 32px;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  gap: 32px;
+  align-items: center;
+}
+
+.footer__network-link {
+  width: 32px;
+  transition: opacity 0.2s ease-out;
+}
+
+.footer__network-link:hover {
+  opacity: 0.8;
+}
+
+.footer__network-link img {
+  width: 100%;
+}
