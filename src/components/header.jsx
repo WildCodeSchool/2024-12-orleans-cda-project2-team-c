@@ -1,5 +1,5 @@
 import pokéxplorer from '../assets/icons/pokéxplorer.png';
-import './header.css';
+import '../css/header.css';
 
 export default function Header() {
   return (
