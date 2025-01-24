@@ -1,6 +1,5 @@
 .button {
   padding: 8px 32px;
-  font-family: var(--ff-main);
   font-size: var(--fz-18);
   font-weight: 400;
   border-radius: 4px;
