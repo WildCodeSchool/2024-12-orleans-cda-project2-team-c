@@ -23,10 +23,15 @@ a {
 /* variables */
 :root {
   /* colors */
-  --primary:;
-  --secondary:;
+  --yellow: #ffcc03;
+  --blue-dark: #101e36;
   --black: #1c1c1c;
   --white: #f7f7ff;
+  --grey: #f2f2f2;
+  --grey-dark: #979797;
+  --danger: #f12838;
+  --warning: #ffa037;
+  --success: #41e549;
 
   /* fonts */
   --ff-main: 'Open Sans', serif;
