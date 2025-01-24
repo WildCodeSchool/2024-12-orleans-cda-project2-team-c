@@ -1,15 +1,35 @@
-import pokéxplorer from '../assets/icons/pokéxplorer.png';
+import logo from '../assets/images/pokexplorer-logo.png';
 import '../css/header.css';
+import Button from './button';
 
 export default function Header() {
   return (
     <header>
-      <img src={pokéxplorer} alt='logo' className='logo' />
-      <div className='flexButton'>
-        <button>PokéList</button>
-        <button>My Pokédex</button>
-        <button>Quizz</button>
-      </div>
+      <a href='/' aria-label='Go back to the homepage' title='Go back to the homepage' className='header__logo'>
+        <img src={logo} alt='' aria-hidden='true' />
+      </a>
+
+      <button
+        type='button'
+        className='mobile-navigation__toggler'
+        aria-label='Open navigation menu'
+        title='Open navigation title'
+        aria-controls='main-navigation'
+      >
+        <img src='/src/assets/icons/menu-dots-blue.png' alt='' aria-hidden='true' />
+      </button>
+
+      <nav className='main-navigation' id='main-navigation'>
+        <Button link={true} href='/pokelist' className='button--yellow'>
+          PokéList
+        </Button>
+        <Button link={true} href='/pokedex' className='button--yellow'>
+          My Pokédex
+        </Button>
+        <Button link={true} href='/quiz' className='button--yellow'>
+          Quiz
+        </Button>
+      </nav>
     </header>
   );
 }

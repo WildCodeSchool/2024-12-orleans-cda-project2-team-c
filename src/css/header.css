@@ -6,14 +6,46 @@ header {
   display: flex;
   justify-content: space-between;
 }
-.logo {
-  width: 22vh;
-  height: 7vh;
+
+.header__logo {
+  width: 150px;
 }
-.flexButton {
+
+.header__logo img {
+  width: 100%;
+}
+
+.mobile-navigation__toggler {
+  /* padding: 4px; */
+  width: 32px;
+  background: none;
+  border: none;
   display: flex;
+  justify-content: center;
+  align-items: center;
+  display: none;
+  transition: opacity 0.2s ease-out;
+}
+
+.mobile-navigation__toggler:hover {
+  opacity: 0.8;
+}
+.mobile-navigation__toggler img {
+  width: 100%;
+}
+
+.main-navigation {
+  display: flex;
+  align-items: center;
   gap: 16px;
 }
-button {
-  width: 150px;
+
+@media screen and (max-width: 950px) {
+  .main-navigation {
+    display: none;
+  }
+
+  .mobile-navigation__toggler {
+    display: block;
+  }
 }
