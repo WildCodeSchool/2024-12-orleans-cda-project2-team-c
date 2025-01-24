@@ -1,3 +1,4 @@
+import menuIcon from '../assets/icons/menu-dots-blue.png';
 import logo from '../assets/images/pokexplorer-logo.png';
 import '../css/header.css';
 import Button from './button';
@@ -16,7 +17,7 @@ export default function Header() {
         title='Open navigation title'
         aria-controls='main-navigation'
       >
-        <img src='/src/assets/icons/menu-dots-blue.png' alt='' aria-hidden='true' />
+        <img src={menuIcon} alt='' aria-hidden='true' />
       </button>
 
       <nav className='main-navigation' id='main-navigation'>
