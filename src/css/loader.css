@@ -1,0 +1,22 @@
+.loader {
+  width: 100%;
+  padding: 16px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  animation: loader-rotate 2.5s infinite linear;
+}
+
+.loader img {
+  width: 240px;
+}
+
+@keyframes loader-rotate {
+  from {
+    rotate: 0;
+  }
+
+  to {
+    rotate: 360deg;
+  }
+}
