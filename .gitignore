@@ -24,3 +24,4 @@ prettier.config-save.json
 *.njsproj
 *.sln
 *.sw?
+*test.js
