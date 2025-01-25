@@ -1,0 +1,23 @@
+.statsValid {
+  background-color: var(--green);
+  height: 10px;
+  width: 40px;
+  border: black solid 1px;
+}
+.statsEnable {
+  background-color: var(--white);
+  height: 10px;
+  width: 40px;
+  border: black solid 1px;
+}
+.stats {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  background-color: #f2f2f2;
+}
+.statsContent {
+  display: flex;
+  flex-direction: row;
+  gap: 5px;
+}
