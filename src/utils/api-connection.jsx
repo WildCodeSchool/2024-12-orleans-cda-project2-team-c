@@ -28,19 +28,11 @@ export default {
       if (response.ok) {
         const data = await response.json();
 
-        const pokemonList = [];
-        console.log('1');
-
+        const pokemonsFetchesArray = [];
         data.results.forEach((pokemon) => {
-          this.getRessourceByUrl(pokemon.url).then((data) => {
-            pokemonList.push(data);
-            // console.log(pokemonList);
-            console.log('in');
-          });
+          pokemonsFetchesArray.push(this.getRessourceByUrl(pokemon.url));
         });
-
-        console.log('2');
-        return pokemonList;
+        return pokemonsFetchesArray;
       } else {
         throw new Error(`error while fetching ressource from API: ${response.code}`);
       }

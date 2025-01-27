@@ -5,15 +5,14 @@ import PokemonCard from '../components/pokemon-card';
 import ApiConnection from '../utils/api-connection';
 
 export default function PokemonList() {
-  const [pokemons, setPokemons] = useState([]);
+  const [pokemons, setPokemons] = useState(new Array());
   const [page, setPage] = useState(0);
 
-  const getPokemons = () => {
-    ApiConnection.getPokemonPage(page).then((data) => {
-      console.log(data);
+  async function getPokemons() {
+    Promise.all(await ApiConnection.getPokemonPage(page)).then((newPage) => {
+      setPokemons(...newPage);
     });
-    // setPokemons([...pokemons, ...pokemonList]);
-  };
+  }
 
   useEffect(() => {
     getPokemons(page);
