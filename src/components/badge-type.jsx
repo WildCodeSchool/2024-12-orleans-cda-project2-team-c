@@ -22,37 +22,19 @@ const types = {
   flying: ['#3DC7EF', '#BDB9B8', 'black'],
 };
 
-export default function Badge({ typeName }, href) {
-  const getStyle = () => {
-    const type = types[typeName];
+export default function Badge({ typeName, href }) {
+  const type = types[typeName];
 
-    if (!type) {
-      return null;
-    }
+  const style = type
+    ? {
+        background: type.length === 2 ? type[0] : `linear-gradient(to bottom, ${type[0]} 50%, ${type[1]} 50%)`,
+        color: type[type.length - 1],
+      }
+    : { background: 'var(--grey-dark)', color: 'white' };
 
-    const background = type.length === 2 ? type[0] : `linear-gradient(to bottom, ${type[0]} 50%, ${type[1]} 50%)`;
-
-    const textColor = type[type.length - 1];
-
-    return {
-      background,
-      color: textColor,
-    };
-  };
-
-  const style = getStyle();
-
-  if (!style) {
-    return (
-      <a href={href} className='badge' style={{ background: 'var(--grey)', color: 'black' }}>
-        Unknown
-      </a>
-    );
-  } else {
-    return (
-      <a href={href} className='badge' style={style}>
-        {typeName.charAt(0).toUpperCase() + typeName.slice(1)}
-      </a>
-    );
-  }
+  return (
+    <a href={href} className='badge' style={style}>
+      {type ? typeName.charAt(0).toUpperCase() + typeName.slice(1) : 'Unknown'}
+    </a>
+  );
 }
