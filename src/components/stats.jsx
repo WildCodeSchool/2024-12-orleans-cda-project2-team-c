@@ -1,5 +1,5 @@
+import '../css/stats.css';
 import pokemon from '../mock-pokemon';
-import './stats.css';
 
 function StatBar({ stats }) {
   const statBarElem = [

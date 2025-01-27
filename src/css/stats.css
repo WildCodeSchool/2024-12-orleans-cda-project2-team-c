@@ -1,5 +1,5 @@
 .statsValid {
-  background-color: var(--green);
+  background-color: var(--success);
   height: 13px;
   width: 85px;
 }
