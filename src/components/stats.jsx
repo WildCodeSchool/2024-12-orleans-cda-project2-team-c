@@ -20,7 +20,7 @@ function StatBar({ stats }) {
   return (
     <figure className='stats'>
       {statBarElem.map((element, i) => {
-        return <div className={i < 10 - nbGreen ? 'statsEnable' : 'statsValid'} key={i}></div>;
+        return <div className={i < 10 - nbGreen ? 'stats-enable' : 'stats-valid'} key={i}></div>;
       })}
       <figcaption className='stat-name'>
         {stats.stat.name.charAt(0).toUpperCase() + stats.stat.name.slice(1)}
@@ -33,7 +33,7 @@ export default function Stats() {
   const selectedStats = [pokemon.stats[0], pokemon.stats[1], pokemon.stats[2], pokemon.stats[5]];
   return (
     <>
-      <div className='statsContent'>
+      <div className='stats-content'>
         {selectedStats.map((stats) => {
           return <StatBar key={stats.stat.name} stats={stats} />;
         })}
