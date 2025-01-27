@@ -22,7 +22,9 @@ function StatBar({ stats }) {
       {statBarElem.map((element, i) => {
         return <div className={i < 10 - nbGreen ? 'statsEnable' : 'statsValid'} key={i}></div>;
       })}
-      <figcaption className='stat-name'>{stats.stat.name}</figcaption>
+      <figcaption className='stat-name'>
+        {stats.stat.name.charAt(0).toUpperCase() + stats.stat.name.slice(1)}
+      </figcaption>
     </figure>
   );
 }
