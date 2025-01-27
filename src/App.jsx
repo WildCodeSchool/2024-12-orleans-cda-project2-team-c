@@ -1,11 +1,11 @@
 import './App.css';
 import Footer from './components/footer';
-import Loader from './components/loader';
+import PokemonList from './pages/pokemon-list';
 
 function App() {
   return (
     <>
-      <Loader />
+      <PokemonList />
       <Footer />
     </>
   );
