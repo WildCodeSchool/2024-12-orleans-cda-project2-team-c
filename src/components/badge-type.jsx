@@ -44,7 +44,7 @@ export default function Badge({ typeName }, href) {
 
   if (!style) {
     return (
-      <a href={href} className='badge' style={{ background: 'var(--grey)', color: 'black' }}>
+      <a href={href} className='badge' style={{ background: 'var(--grey-dark)', color: 'white' }}>
         Unknown
       </a>
     );
