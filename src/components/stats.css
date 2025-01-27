@@ -1,23 +1,23 @@
 .statsValid {
   background-color: var(--green);
-  height: 10px;
-  width: 40px;
-  border: black solid 1px;
+  height: 13px;
+  width: 85px;
 }
 .statsEnable {
   background-color: var(--white);
-  height: 10px;
-  width: 40px;
-  border: black solid 1px;
+  height: 13px;
+  width: 85px;
 }
 .stats {
   display: flex;
   flex-direction: column;
   gap: 5px;
-  background-color: #f2f2f2;
 }
 .statsContent {
   display: flex;
   flex-direction: row;
   gap: 5px;
+}
+.stat-name {
+  text-align: center;
 }
