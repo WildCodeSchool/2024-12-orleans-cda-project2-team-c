@@ -1,28 +1,28 @@
 import pokemon from '../mock-pokemon';
 import './stats.css';
 
-function StatBar({ stat }) {
+function StatBar({ stats, key }) {
   const statBarElem = [
-    <div key></div>,
-    <div key></div>,
-    <div key></div>,
-    <div key></div>,
-    <div key></div>,
-    <div key></div>,
-    <div key></div>,
-    <div key></div>,
-    <div key></div>,
-    <div key></div>,
+    <div></div>,
+    <div></div>,
+    <div></div>,
+    <div></div>,
+    <div></div>,
+    <div></div>,
+    <div></div>,
+    <div></div>,
+    <div></div>,
+    <div></div>,
   ];
 
-  const nbGreen = Math.round(stat.base_stat / 10);
+  const nbGreen = Math.round(stats.base_stat / 10);
 
   return (
     <figure className='stats'>
       {statBarElem.map((element, i) => {
-        return <div key={element} className={i < 10 - nbGreen ? 'statsEnable' : 'statsValid'}></div>;
+        return <div className={i < 10 - nbGreen ? 'statsEnable' : 'statsValid'} key={i}></div>;
       })}
-      <figcaption>{stat.stat.name}</figcaption>
+      <figcaption>{stats.stat.name}</figcaption>
     </figure>
   );
 }
@@ -32,8 +32,8 @@ export default function Stats() {
   return (
     <>
       <div className='statsContent'>
-        {selectedStats.map((stat) => {
-          return <StatBar key={stat.stat.name} stat={stat} />;
+        {selectedStats.map((stats) => {
+          return <StatBar key={stats.stat.name} stats={stats} />;
         })}
       </div>
     </>
