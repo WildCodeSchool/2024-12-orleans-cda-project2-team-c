@@ -1,11 +1,10 @@
-import './App.css';
 import Footer from './components/footer';
-import Loader from './components/loader';
+import Header from './components/header';
 
 function App() {
   return (
     <>
-      <Loader />
+      <Header />
       <Footer />
     </>
   );
