@@ -12,8 +12,9 @@ export default function PokemonList() {
     async function getPokemons() {
       Promise.all(await ApiConnection.getPokemonPage(page)).then((newPage) => {
         const pokemonList = [];
-        pokemonList.push(...pokemons, ...newPage);
-        setPokemons(() => pokemonList);
+        setPokemons((currentPokemons) => {
+          pokemonList.push(...currentPokemons, ...newPage);
+        });
       });
     }
 

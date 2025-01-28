@@ -14,7 +14,7 @@ export default {
         throw new Error(`error while fetching ressource from API: ${response.code}`);
       }
     } catch (error) {
-      console.log(error);
+      console.error(error);
     }
   },
 
@@ -37,7 +37,7 @@ export default {
         throw new Error(`error while fetching ressource from API: ${response.code}`);
       }
     } catch (error) {
-      console.log(error);
+      console.error(error);
     }
   },
 
@@ -52,7 +52,7 @@ export default {
         throw new Error(`error while fetching ressource from API: ${response.code}`);
       }
     } catch (error) {
-      console.log(error);
+      console.error(error);
     }
   },
 };
