@@ -10,11 +10,11 @@ export default function PokemonList() {
 
   useEffect(() => {
     async function getPokemons() {
+      const pokemonList = [];
+
       Promise.all(await ApiConnection.getPokemonPage(page)).then((newPage) => {
-        const pokemonList = [];
-        setPokemons((currentPokemons) => {
-          pokemonList.push(...currentPokemons, ...newPage);
-        });
+        pokemonList.push(...newPage);
+        setPokemons(pokemonList);
       });
     }
 
