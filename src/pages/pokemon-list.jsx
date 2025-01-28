@@ -6,15 +6,17 @@ import ApiConnection from '../utils/api-connection';
 
 export default function PokemonList() {
   const [pokemons, setPokemons] = useState(new Array());
-  const [page, setPage] = useState(0);
-
-  async function getPokemons() {
-    Promise.all(await ApiConnection.getPokemonPage(page)).then((newPage) => {
-      setPokemons(...newPage);
-    });
-  }
+  const [page, setPage] = useState(1);
 
   useEffect(() => {
+    async function getPokemons() {
+      Promise.all(await ApiConnection.getPokemonPage(page)).then((newPage) => {
+        const pokemonList = [];
+        pokemonList.push(...pokemons, ...newPage);
+        setPokemons(() => pokemonList);
+      });
+    }
+
     getPokemons(page);
   }, [page]);
 
