@@ -1,3 +1,7 @@
 export default function PokemonCard({ pokemon }) {
-  return <h1>{pokemon.name}</h1>;
+  return (
+    <article className='pokemomn-card'>
+      <h2>{pokemon.name}</h2>
+    </article>
+  );
 }

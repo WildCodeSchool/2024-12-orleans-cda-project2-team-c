@@ -52,6 +52,13 @@ body {
   background: var(--white);
   color: var(--black);
   font-family: var(--ff-main);
+  background: url('bg-pattern-1.png') repeat;
+}
+
+#root {
+  min-height: 100vh;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
 }
 
 h1,
