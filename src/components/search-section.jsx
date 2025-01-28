@@ -3,31 +3,41 @@ import { useState } from 'react';
 import '../css/search-section.css';
 
 export default function Search({ title }) {
-  const [searchBy, setSearchBy] = useState('type');
+  const [searchBy, setSearchBy] = useState('name');
 
   const handleRadioChange = (event) => {
     setSearchBy(event.target.value);
   };
 
   return (
-    <div>
+    <div className='search-container'>
       <h2>{title}</h2>
-      <div>
+      <div className='search-item-container'>
         <p>Search by</p>
         <label>
-          <input type='radio' name='searchBy' value='type' checked={searchBy === 'type'} onChange={handleRadioChange} />
+          <input
+            className='radio'
+            type='radio'
+            name='searchBy'
+            value='type'
+            checked={searchBy === 'type'}
+            onChange={handleRadioChange}
+          />
           Type
         </label>
         <label>
-          <input type='radio' name='searchBy' value='name' checked={searchBy === 'name'} onChange={handleRadioChange} />
+          <input
+            className='radio'
+            type='radio'
+            name='searchBy'
+            value='name'
+            checked={searchBy === 'name'}
+            onChange={handleRadioChange}
+          />
           Name
         </label>
+        {searchBy === 'type' ? <select>{}</select> : <input type='text' placeholder='Enter a Pokémon name' />}
       </div>
-      {searchBy === 'type' ? (
-        <select>{/* options de l'api */}</select>
-      ) : (
-        <input type='text' placeholder='Enter a Pokémon name' />
-      )}
     </div>
   );
 }
