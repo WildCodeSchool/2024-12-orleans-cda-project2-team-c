@@ -1,25 +1,11 @@
 import '../css/stats.css';
-import pokemon from '../mock-pokemon';
 
 function StatBar({ stats }) {
-  const statBarElem = [
-    <div key={1}></div>,
-    <div key={2}></div>,
-    <div key={3}></div>,
-    <div key={4}></div>,
-    <div key={5}></div>,
-    <div key={6}></div>,
-    <div key={7}></div>,
-    <div key={8}></div>,
-    <div key={9}></div>,
-    <div key={10}></div>,
-  ];
-
   const nbGreen = Math.round(stats.base_stat / 10);
 
   return (
     <figure className='stats'>
-      {statBarElem.map((element, i) => {
+      {Array.from(new Array(10)).map((element, i) => {
         return <div className={i < 10 - nbGreen ? 'stats-enable' : 'stats-valid'} key={i}></div>;
       })}
       <figcaption className='stat-name'>
@@ -29,7 +15,9 @@ function StatBar({ stats }) {
   );
 }
 
-export default function Stats() {
+export default function Stats({ pokemon }) {
+  console.log(pokemon);
+
   const selectedStats = [pokemon.stats[0], pokemon.stats[1], pokemon.stats[2], pokemon.stats[5]];
   return (
     <>
