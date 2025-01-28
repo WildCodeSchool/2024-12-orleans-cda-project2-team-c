@@ -1,0 +1,23 @@
+.stats-valid {
+  background-color: var(--success);
+  height: 13px;
+  width: 85px;
+}
+.stats-enable {
+  background-color: var(--white);
+  height: 13px;
+  width: 85px;
+}
+.stats {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+.stats-content {
+  display: flex;
+  flex-direction: row;
+  gap: 5px;
+}
+.stat-name {
+  text-align: center;
+}
