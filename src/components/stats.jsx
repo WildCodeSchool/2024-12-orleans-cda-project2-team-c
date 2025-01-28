@@ -16,8 +16,6 @@ function StatBar({ stats }) {
 }
 
 export default function Stats({ pokemon }) {
-  console.log(pokemon);
-
   const selectedStats = [pokemon.stats[0], pokemon.stats[1], pokemon.stats[2], pokemon.stats[5]];
   return (
     <>
