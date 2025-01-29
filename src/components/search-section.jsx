@@ -27,7 +27,7 @@ export default function Search({ title }) {
   return (
     <div className='search-container'>
       <h1>{title}</h1>
-      <form className='search-item-container' aria-role='search'>
+      <form className='search-item-container' role='search'>
         <p>Search by</p>
 
         <label>
