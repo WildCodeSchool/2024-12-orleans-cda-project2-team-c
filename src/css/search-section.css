@@ -1,5 +1,4 @@
-h1 {
-  font-family: var(--ff-title);
+.title {
   font-size: var(--fz-32);
   font-weight: 700;
 }
@@ -24,8 +23,8 @@ h1 {
   padding: 16px;
 }
 
-input:not([type='radio']),
-select {
+.search-by-name-inupt,
+.types-list {
   padding: 4px 8px;
   border: 2px solid #ddd;
   border-radius: 10px;
@@ -33,15 +32,15 @@ select {
   outline: none;
 }
 
-label {
+.label-radio {
   cursor: pointer;
 }
 
-label > input {
+.label-radio > input {
   margin-right: 8px;
 }
 
-.radio {
+.search-by-radio {
   appearance: none;
   width: 15px;
   height: 15px;
@@ -54,7 +53,7 @@ label > input {
     border-color 0.3s;
 }
 
-.radio:checked {
+.search-by-radio:checked {
   background-color: var(--yellow);
   border-color: var(--yellow);
 }

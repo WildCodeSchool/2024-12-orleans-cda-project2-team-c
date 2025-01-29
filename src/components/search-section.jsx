@@ -26,13 +26,13 @@ export default function Search({ title }) {
 
   return (
     <div className='search-container'>
-      <h1>{title}</h1>
+      <h1 className='title'>{title}</h1>
       <form className='search-item-container'>
         <p>Search by</p>
 
-        <label>
+        <label className='label-radio'>
           <input
-            className='radio'
+            className='search-by-radio'
             type='radio'
             name='searchBy'
             value='name'
@@ -42,9 +42,9 @@ export default function Search({ title }) {
           Name
         </label>
 
-        <label>
+        <label className='label-radio'>
           <input
-            className='radio'
+            className='search-by-radio'
             type='radio'
             name='searchBy'
             value='type'
@@ -55,7 +55,7 @@ export default function Search({ title }) {
         </label>
 
         {searchBy === 'type' ? (
-          <select>
+          <select className='types-list'>
             {types.map((type) => (
               <option key={type.id} value={type.name}>
                 {type.name.charAt(0).toUpperCase() + type.name.slice(1)}
@@ -63,7 +63,7 @@ export default function Search({ title }) {
             ))}
           </select>
         ) : (
-          <input type='text' placeholder='Enter a Pokémon name' />
+          <input className='search-by-name-inupt' type='text' placeholder='Enter a Pokémon name' />
         )}
       </form>
     </div>
