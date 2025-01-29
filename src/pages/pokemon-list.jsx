@@ -5,7 +5,7 @@ import PokemonCard from '../components/pokemon-card';
 import ApiConnection from '../utils/api-connection';
 
 export default function PokemonList() {
-  const [pokemons, setPokemons] = useState(new Array());
+  const [pokemons, setPokemons] = useState([]);
   const [page, setPage] = useState(1);
 
   useEffect(() => {
@@ -22,7 +22,7 @@ export default function PokemonList() {
   }, [page]);
 
   return (
-    <main>
+    <section className='pokemon-section'>
       {pokemons.length ? (
         pokemons.map((pokemon) => {
           return <PokemonCard key={pokemon.name} pokemon={pokemon} />;
@@ -30,6 +30,6 @@ export default function PokemonList() {
       ) : (
         <Loader />
       )}
-    </main>
+    </section>
   );
 }
