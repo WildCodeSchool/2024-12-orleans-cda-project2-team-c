@@ -19,18 +19,6 @@ export default function Carousel() {
   const link = '';
   const href = '';
 
-  // const types = pokemons.types;
-
-  const showSlides = (n) => {
-    if (n > 1) {
-      setSlideIndex(1);
-    } else if (n < 1) {
-      setSlideIndex(1);
-    } else {
-      setSlideIndex(n);
-    }
-  };
-
   const prevSlide = () => {
     setSlideIndex((slideIndex) => (slideIndex > 0 ? slideIndex - 1 : 8));
   };
