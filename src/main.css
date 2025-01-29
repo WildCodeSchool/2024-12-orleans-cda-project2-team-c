@@ -32,6 +32,7 @@ a {
   --white: #f7f7ff;
   --grey: #f2f2f2;
   --grey-dark: #979797;
+  --text-hint: #726f6f;
   --danger: #f12838;
   --warning: #ffa037;
   --success: #41e549;
@@ -60,6 +61,9 @@ body {
   display: grid;
   grid-template-rows: auto 1fr auto;
 }
+main {
+  padding-inline: 16px;
+}
 
 h1,
 h2,
@@ -68,4 +72,12 @@ h4,
 h5,
 h6 {
   font-family: var(--ff-title);
+}
+
+h1 {
+  font-size: var(--fz-32);
+}
+
+h2 {
+  font-size: var(--fz-24);
 }
