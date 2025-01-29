@@ -1,13 +1,14 @@
+import { Outlet } from 'react-router-dom';
+
 import Footer from './components/footer';
 import Header from './components/header';
-import PokemonList from './pages/pokemon-list';
 
 function App() {
   return (
     <>
       <Header />
       <main>
-        <PokemonList />
+        <Outlet />
       </main>
       <Footer />
     </>
