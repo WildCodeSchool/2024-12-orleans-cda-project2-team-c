@@ -4,7 +4,6 @@ import { useLoaderData } from 'react-router-dom';
 import PrevBtn from '../assets/icons/chevron-left-blue.png';
 import NextBtn from '../assets/icons/chevron-right-blue.png';
 import '../css/carousel.css';
-import MockPokemons from '../mock-pokemons';
 import Badge from './badge-type';
 import Button from './button';
 import Stats from './stats';
@@ -12,9 +11,7 @@ import Stats from './stats';
 export default function Carousel() {
   const loaderData = useLoaderData();
   const [pokemons, setPokemons] = useState(loaderData);
-  // const MockPokemon = MockPokemons[1];
   const [slideIndex, setSlideIndex] = useState(0);
-  console.log(pokemons);
 
   const link = '';
   const href = '';
