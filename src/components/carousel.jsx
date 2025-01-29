@@ -1,76 +1,97 @@
-import { useEffect, useState } from 'react';
+import React, { useState } from 'react';
+import { useLoaderData } from 'react-router-dom';
 
 import PrevBtn from '../assets/icons/chevron-left-blue.png';
 import NextBtn from '../assets/icons/chevron-right-blue.png';
 import '../css/carousel.css';
-import MockPokemon from '../mock-pokemon';
-import ApiConnection from '../utils/api-connection';
+import MockPokemons from '../mock-pokemons';
 import Badge from './badge-type';
 import Button from './button';
 import Stats from './stats';
 
-// function PokemonList() {
-//   return (
-//     <main>
-//       {pokemons.length ? (
-//         pokemons.map((pokemon) => {
-//           return <Carousel key={pokemon.name} pokemon={pokemon} />;
-//         })
-//       ) : (
-//         <Loader />
-//       )}
-//     </main>
-//   );
-// }
-
 export default function Carousel() {
+  const loaderData = useLoaderData();
+  const [pokemons, setPokemons] = useState(loaderData);
+  // const MockPokemon = MockPokemons[1];
+  const [slideIndex, setSlideIndex] = useState(0);
+  console.log(pokemons);
+
   const link = '';
   const href = '';
-  const types = [MockPokemon.types[0], MockPokemon.types[1]];
 
-  // const [pokemons, setPokemons] = useState(new Array());
-  // const [data, setData] = useState(1);
+  // const types = pokemons.types;
 
-  // useEffect(() => {
-  //   async function getPokemons() {
-  //     const pokemonList = [];
+  const showSlides = (n) => {
+    if (n > 1) {
+      setSlideIndex(1);
+    } else if (n < 1) {
+      setSlideIndex(1);
+    } else {
+      setSlideIndex(n);
+    }
+  };
 
-  //     Promise.all(await ApiConnection.getPokemonPage(data)).then((newData) => {
-  //       pokemonList.push(...newData);
-  //       setPokemons(pokemonList);
-  //     });
-  //   }
+  const prevSlide = () => {
+    setSlideIndex((slideIndex) => (slideIndex > 0 ? slideIndex - 1 : 8));
+  };
 
-  //   getPokemons(data);
-  // }, [data]);
+  const nextSlide = () => {
+    setSlideIndex((slideIndex) => (slideIndex < 8 ? slideIndex + 1 : 0));
+  };
 
   return (
     <>
-      <div className='slide'>
-        <h1>Most popular</h1>
+      <div className='carousel-container'>
+        <div className='carousel-slides'>
+          <div className='slide'>
+            <h1>Most popular</h1>
+            {pokemons.map((pokemon, index) => {
+              return (
+                <div className={`card-carousel ${index === slideIndex ? 'card-carousel--active' : ''}`} key={index}>
+                  <img
+                    src={pokemon.sprites.other['official-artwork'].front_default}
+                    alt={pokemon.name}
+                    className='pokemonImg'
+                  />
+                  <div className='info'>
+                    <p>
+                      {pokemon.name} N°{pokemon.id}
+                    </p>
 
-        <div className='card-carousel'>
-          <img src={MockPokemon.sprites.other['official-artwork'].front_default} alt='' className='pokemonImg' />
-          <div className='info'>
-            <p>
-              {MockPokemon.name} N°{MockPokemon.id}
-            </p>
-
-            <div className={'type'}>
-              {types.map((element) => {
-                return <Badge typeName={element.type.name} key={MockPokemon.name} />;
-              })}
+                    <div className='type'>
+                      {pokemon.types.map((element) => {
+                        return <Badge typeName={element.type.name} key={element.type.name} href={href} />;
+                      })}
+                    </div>
+                    <Stats pokemon={pokemon} />
+                  </div>
+                </div>
+              );
+            })}
+            <div className='dots-container'>
+              {pokemons.map((pokemon, index) => (
+                <div
+                  key={pokemon.id}
+                  className={`dot ${index === slideIndex ? 'dot--active' : ''}`}
+                  onClick={() => setSlideIndex(index)}
+                ></div>
+              ))}
             </div>
-            <Stats pokemon={MockPokemon} key={MockPokemon.name} />
           </div>
         </div>
-        <div></div>
 
-        <img src={PrevBtn} alt='' className='prev-btn' onClick={PrevSlide(-1)} />
-        <img src={NextBtn} alt='' className='next-btn' onClick={NextSlide(1)} />
+        <button onClick={prevSlide} className='prev-btn'>
+          <img src={PrevBtn} alt='Previous' />
+        </button>
+
+        <button onClick={nextSlide} className='next-btn'>
+          <img src={NextBtn} alt='Next' />
+        </button>
       </div>
 
-      <Button link={link} href={href} className={'button  button--red'} children={'Explore all !'} />
+      <Button link={link} href={href} className={'button  button--red'}>
+        Explore all !
+      </Button>
     </>
   );
 }
