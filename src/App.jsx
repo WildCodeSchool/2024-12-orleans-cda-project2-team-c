@@ -6,7 +6,9 @@ function App() {
   return (
     <>
       <Header />
-      <PokemonList />
+      <main>
+        <PokemonList />
+      </main>
       <Footer />
     </>
   );
