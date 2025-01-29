@@ -1,0 +1,74 @@
+.card-carousel {
+  display: none;
+  flex-direction: row-reverse;
+  align-items: center;
+  gap: 32px;
+}
+
+.card-carousel--active {
+  display: flex;
+}
+.pointor {
+  width: 8px;
+  height: 8px;
+  border: black solid 1px;
+  border-radius: 35px 35px 35px 35px;
+  margin: 0 auto;
+  margin-bottom: 16px;
+}
+.pokemonImg {
+  border: black solid 1px;
+  width: 409px;
+  height: 409px;
+  margin-right: 96px;
+  margin-top: 108px;
+  margin-left: 32px;
+  margin-bottom: 112px;
+}
+.slide {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  max-width: 1074px;
+  width: 100%;
+  background-color: var(--grey);
+  gap: 48px;
+  margin: 0 auto;
+  margin-top: 108px;
+}
+.info {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 32px;
+}
+h1 {
+  text-align: center;
+}
+.button--red {
+  margin: 0 auto;
+  margin-top: 48px;
+  margin-bottom: 64px;
+}
+.prev-btn,
+.next-btn {
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+}
+.prev-btn {
+  left: 16px;
+}
+.next-btn {
+  right: 16px;
+}
+.type {
+  display: flex;
+  flex-direction: row;
+  gap: 8px;
+}
+.carousel-container {
+  max-width: 1074px;
+  margin: 0 auto;
+  position: relative;
+}
