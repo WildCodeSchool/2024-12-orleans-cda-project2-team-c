@@ -53,7 +53,7 @@ body {
   background: var(--white);
   color: var(--black);
   font-family: var(--ff-main);
-  background: url('bg-pattern-1.png') repeat;
+  background: url('/bg-pattern-1.png') repeat;
 }
 
 #root {
@@ -62,7 +62,7 @@ body {
   grid-template-rows: auto 1fr auto;
 }
 main {
-  padding-inline: 16px;
+  padding: 108px 16px 64px;
 }
 
 h1,
@@ -80,4 +80,9 @@ h1 {
 
 h2 {
   font-size: var(--fz-24);
+}
+
+/* utils */
+.center {
+  margin-inline: auto;
 }

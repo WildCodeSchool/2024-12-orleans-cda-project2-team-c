@@ -32,7 +32,7 @@ export default {
         data.results.forEach((pokemon) => {
           pokemonsFetchesArray.push(this.getRessourceByUrl(pokemon.url));
         });
-        return pokemonsFetchesArray;
+        return Promise.all(pokemonsFetchesArray);
       } else {
         throw new Error(`error while fetching ressource from API: ${response.code}`);
       }
