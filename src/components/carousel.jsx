@@ -29,7 +29,7 @@ export default function Carousel() {
       <div className='carousel-container'>
         <div className='carousel-slides'>
           <div className='slide'>
-            <h1>Most popular</h1>
+            <h1 className='title'>Most popular</h1>
             {pokemons.map((pokemon, index) => {
               return (
                 <div className={`card-carousel ${index === slideIndex ? 'card-carousel--active' : ''}`} key={index}>
@@ -39,10 +39,10 @@ export default function Carousel() {
                     className='pokemonImg'
                   />
                   <div className='info'>
-                    <p>
-                      {pokemon.name} N°{pokemon.id}
-                    </p>
-
+                    <div className='id'>
+                      <h2 className='name'>{pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1)}</h2>
+                      <p className='number'>N°{pokemon.id}</p>
+                    </div>
                     <div className='type'>
                       {pokemon.types.map((element) => {
                         return <Badge typeName={element.type.name} key={element.type.name} href={href} />;
