@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 
 import '../css/search-section.css';
 
-export default function Search({ title }) {
+export default function SearchSection({ title }) {
   const [searchBy, setSearchBy] = useState('name');
   const [types, setTypes] = useState([]);
 
@@ -14,8 +14,13 @@ export default function Search({ title }) {
     const fetchTypes = async () => {
       try {
         const response = await fetch('https://pokeapi.co/api/v2/type/');
-        const data = await response.json();
-        setTypes(data.results);
+
+        if (response.ok) {
+          const data = await response.json();
+          setTypes(data.results);
+        } else {
+          throw new Error('Error while fetching types from API', response.code);
+        }
       } catch (error) {
         console.error('Error while fetching types from API', error);
       }

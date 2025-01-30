@@ -1,0 +1,13 @@
+.pokemon-section {
+  max-width: 1294px;
+  width: 100%;
+  margin-inline: auto;
+}
+
+.pokemon-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 32px;
+  margin-bottom: 48px;
+}
