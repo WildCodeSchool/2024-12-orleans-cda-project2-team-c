@@ -41,7 +41,7 @@ export default function Carousel() {
                   <div className='info'>
                     <div className='id'>
                       <h2 className='name'>{pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1)}</h2>
-                      <p className='number'>N°{pokemon.id}</p>
+                      <p className='number'>N° {'0'.repeat(3 - pokemon.id.toString().length) + pokemon.id}</p>
                     </div>
                     <div className='type'>
                       {pokemon.types.map((element) => {
