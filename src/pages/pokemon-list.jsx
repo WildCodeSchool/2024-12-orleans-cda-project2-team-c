@@ -14,14 +14,14 @@ export default function PokemonList() {
 
   const [page, setPage] = useState(1);
 
-  async function getPokemons() {
+  async function getPokemons(page) {
     const newPage = await ApiConnection.getPokemonPage(page);
     setPokemons([...pokemons, ...newPage]);
   }
 
   function handleClickMoreBtn() {
     setPage(page + 1);
-    getPokemons();
+    getPokemons(page);
   }
 
   return (
