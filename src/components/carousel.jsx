@@ -53,24 +53,40 @@ export default function Carousel() {
                 </div>
               );
             })}
+
             <div className='dots-container'>
-              {pokemons.map((pokemon, index) => (
-                <div
-                  key={pokemon.id}
-                  className={`dot ${index === slideIndex ? 'dot--active' : ''}`}
-                  onClick={() => setSlideIndex(index)}
-                ></div>
-              ))}
+              <button onClick={prevSlide} className='prev-dot'>
+                <img src={PrevBtn} alt='Previous' className='img-dot' />
+              </button>
+              <div className='box-dot'>
+                {pokemons.map((pokemon, index) => (
+                  <div
+                    key={pokemon.id}
+                    className={`dot ${index === slideIndex ? 'dot--active' : ''}`}
+                    onClick={() => setSlideIndex(index)}
+                  ></div>
+                ))}
+              </div>
+              <button onClick={nextSlide} className='next-dot'>
+                <img src={NextBtn} alt='Next' className='img-dot' />
+              </button>
             </div>
           </div>
         </div>
 
         <button onClick={prevSlide} className='prev-btn'>
-          <img src={PrevBtn} alt='Previous' />
+          <img src={PrevBtn} alt='Previous' className='img-btn' />
         </button>
 
         <button onClick={nextSlide} className='next-btn'>
-          <img src={NextBtn} alt='Next' />
+          <img src={NextBtn} alt='Next' className='img-btn' />
+        </button>
+        <button onClick={prevSlide} className='mid-l-btn'>
+          <img src={PrevBtn} alt='Previous' className='img-btn' />
+        </button>
+
+        <button onClick={nextSlide} className='mid-r-btn'>
+          <img src={NextBtn} alt='Next' className='img-btn' />
         </button>
       </div>
 
