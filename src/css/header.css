@@ -5,6 +5,11 @@ header {
   background-color: var(--white);
   display: flex;
   justify-content: space-between;
+  position: relative;
+}
+.nav-bar {
+  display: flex;
+  justify-content: space-between;
 }
 
 .header__logo {
@@ -16,7 +21,6 @@ header {
 }
 
 .mobile-navigation__toggler {
-  /* padding: 4px; */
   width: 32px;
   background: none;
   border: none;
@@ -32,6 +36,7 @@ header {
 }
 .mobile-navigation__toggler img {
   width: 100%;
+  pointer-events: none;
 }
 
 .main-navigation {
@@ -42,7 +47,18 @@ header {
 
 @media screen and (max-width: 950px) {
   .main-navigation {
-    display: none;
+    position: absolute;
+    flex-direction: column;
+    width: 100%;
+    top: 98%;
+    left: 0;
+    background-color: var(--white);
+    padding: 16px;
+    transform: translateY(-140%);
+  }
+
+  .main-navigation--active {
+    transform: translateY(0);
   }
 
   .mobile-navigation__toggler {
