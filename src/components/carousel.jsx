@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { useLoaderData } from 'react-router-dom';
 
 import PrevBtn from '../assets/icons/chevron-left-blue.png';
@@ -12,10 +12,6 @@ export default function Carousel() {
   const loaderData = useLoaderData();
   const [pokemons, setPokemons] = useState(loaderData);
   const [slideIndex, setSlideIndex] = useState(0);
-
-  const link = '';
-  const href = '';
-
   const prevSlide = () => {
     setSlideIndex((slideIndex) => (slideIndex > 0 ? slideIndex - 1 : 8));
   };
@@ -45,7 +41,7 @@ export default function Carousel() {
                     </div>
                     <div className='type'>
                       {pokemon.types.map((element) => {
-                        return <Badge typeName={element.type.name} key={element.type.name} href={href} />;
+                        return <Badge typeName={element.type.name} key={element.type.name} href={'#'} />;
                       })}
                     </div>
                     <Stats pokemon={pokemon} />
@@ -90,7 +86,7 @@ export default function Carousel() {
         </button>
       </div>
 
-      <Button link={link} href={href} className={'button  button--red'}>
+      <Button link={true} href={'#'} className={'button  button--red'}>
         Explore all !
       </Button>
     </>
