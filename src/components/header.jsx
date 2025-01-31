@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-import Close from '../assets/icons/close-blue.png';
+import close from '../assets/icons/close-blue.png';
 import menuIcon from '../assets/icons/menu-dots-blue.png';
 import logo from '../assets/images/pokexplorer-logo.png';
 import '../css/header.css';
@@ -26,7 +26,7 @@ export default function Header() {
         aria-controls='main-navigation'
         onClick={openClick}
       >
-        <img src={isActive ? Close : menuIcon} alt='' aria-hidden='true' />
+        <img src={isActive ? close : menuIcon} alt='' aria-hidden='true' />
       </button>
 
       <nav className={`main-navigation ${isActive ? 'main-navigation--active' : ''} `} id='main-navigation'>
