@@ -47,7 +47,6 @@
 .box,
 .column1,
 .column2 {
-  /* border: 2px solid red; */
   padding: 20px;
 }
 
@@ -64,7 +63,7 @@
   display: flex;
   gap: 8px;
   flex-wrap: wrap;
-  width: 105%;
+  width: 110%;
 }
 
 .moves-list {

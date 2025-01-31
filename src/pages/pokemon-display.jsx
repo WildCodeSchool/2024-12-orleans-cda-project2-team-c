@@ -1,13 +1,15 @@
+import { useState } from 'react';
+import { Link, useLoaderData } from 'react-router-dom';
+
 import Badge from '../components/badge-type';
 import Button from '../components/button';
-import Mock from '../components/mock-pokemon';
 import '../css/pokemon-display.css';
 
 const typeWeaknesses = {
   steel: ['fire', 'fighting', 'ground'],
   fighting: ['flying', 'psychic', 'fairy'],
   dragon: ['ice', 'dragon', 'fairy'],
-  water: ['electric', 'Grass'],
+  water: ['electric', 'grass'],
   fire: ['water', 'ground', 'rock'],
   electric: ['ground'],
   fairy: ['poison', 'steel'],
@@ -25,7 +27,7 @@ const typeWeaknesses = {
 };
 
 export default function PokemonDisplay() {
-  const pokemon = Mock;
+  const [pokemon, nextPokemon, prevPokemon] = useLoaderData();
 
   return (
     <section className='pokemon-display'>
@@ -35,10 +37,12 @@ export default function PokemonDisplay() {
       </Button>
 
       <div className='pokemon-container'>
-        <p>{'0'.repeat(3 - pokemon.id.toString().length) + pokemon.id}</p>
+        <p>
+          {pokemon.id.toString().length === 4 ? pokemon.id : '0'.repeat(3 - pokemon.id.toString().length) + pokemon.id}
+        </p>
         <div className='left'>
           <div className='left-top box'>
-            <h1>{pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1)}</h1>
+            <h1 className='capital'>{pokemon.name.replace(/-/g, ' ')}</h1>
             <p>
               {pokemon.height / 10}m - {pokemon.weight / 10}kg
             </p>
@@ -46,14 +50,11 @@ export default function PokemonDisplay() {
           <div className='column1'>
             <div className='item'>
               <h3 className='item-title'>Base stats</h3>
-              {pokemon.stats.map((stat) => {
+              {pokemon.stats.map((stat, index) => {
                 return (
-                  <>
-                    <p>
-                      {stat.stat.name.charAt(0).toUpperCase() + stat.stat.name.slice(1)} :
-                      <strong> {stat.base_stat}</strong>
-                    </p>
-                  </>
+                  <p key={index} className='capital'>
+                    {stat.stat.name.replace(/-/g, ' ')} :<strong> {stat.base_stat}</strong>
+                  </p>
                 );
               })}
             </div>
@@ -63,8 +64,8 @@ export default function PokemonDisplay() {
               <ul className='moves-list'>
                 {pokemon.moves.slice(0, 8).map((move) => {
                   return (
-                    <li key={move.move.name}>
-                      {move.move.name.charAt(0).toUpperCase() + move.move.name.replace(/-/g, ' ').slice(1)}
+                    <li key={move.move.name} className='capital'>
+                      {move.move.name.replace(/-/g, ' ')}
                     </li>
                   );
                 })}
@@ -74,11 +75,11 @@ export default function PokemonDisplay() {
           <div className='column2'>
             <div className='item'>
               <h3 className='item-title'>Abilities</h3>
-              {pokemon.abilities.map((ability) => {
+              {pokemon.abilities.map((ability, index) => {
                 return (
-                  <>
-                    <p>{ability.ability.name.charAt(0).toUpperCase() + ability.ability.name.slice(1)}</p>
-                  </>
+                  <p key={index} className='capital'>
+                    {ability.ability.name.replace(/-/g, ' ')}
+                  </p>
                 );
               })}
             </div>
@@ -86,12 +87,8 @@ export default function PokemonDisplay() {
             <div className='item'>
               <h3 className='item-title'>Types</h3>
               <div>
-                {pokemon.types.map((type) => {
-                  return (
-                    <>
-                      <Badge typeName={type.type.name} />
-                    </>
-                  );
+                {pokemon.types.map((type, index) => {
+                  return <Badge key={index} typeName={type.type.name} />;
                 })}
               </div>
             </div>
@@ -99,11 +96,9 @@ export default function PokemonDisplay() {
             <div className='item'>
               <h3 className='item-title'>Weaknesses</h3>
               <div>
-                {pokemon.types.map((type, index) =>
-                  typeWeaknesses[type.type.name] ? (
-                    typeWeaknesses[type.type.name].map((weakness, index) => <Badge key={index} typeName={weakness} />)
-                  ) : (
-                    <Badge key={index} typeName={'Unknown'} />
+                {[...new Set(pokemon.types.map((type) => typeWeaknesses[type.type.name] || ['Unknown']).flat())].map(
+                  (weakness, index) => (
+                    <Badge key={index} typeName={weakness} />
                   ),
                 )}
               </div>
@@ -111,19 +106,27 @@ export default function PokemonDisplay() {
           </div>
         </div>
         <div className='right box'>
-          <img className='artwork' src={Mock.sprites.other['official-artwork'].front_default} alt='' />
+          <img className='artwork' src={pokemon.sprites.other['official-artwork'].front_default} alt='' />
         </div>
       </div>
       <div className='pokelist-navigation'>
-        <button className='arrow-button left-arrow arrow'>
-          <h3>{pokemon.id - 1}</h3>
-          <p>{'0'.repeat(3 - pokemon.id.toString().length) + (pokemon.id - 1)}</p>
-        </button>
+        <Link to={`/pokemon/${prevPokemon.id}`} className='arrow-button left-arrow arrow'>
+          <h2 className='capital'>{prevPokemon.name.replace(/-/g, ' ')}</h2>
+          <p>
+            {prevPokemon.id.toString().length === 4
+              ? prevPokemon.id
+              : '0'.repeat(3 - prevPokemon.id.toString().length) + prevPokemon.id}
+          </p>
+        </Link>
 
-        <button className='arrow-button right-arrow arrow'>
-          <p>{'0'.repeat(3 - pokemon.id.toString().length) + (pokemon.id + 1)}</p>
-          <h3>{pokemon.id + 1}</h3>
-        </button>
+        <Link to={`/pokemon/${nextPokemon.id}`} className='arrow-button right-arrow arrow'>
+          <p>
+            {nextPokemon.id.toString().length === 4
+              ? nextPokemon.id
+              : '0'.repeat(3 - nextPokemon.id.toString().length) + nextPokemon.id}
+          </p>
+          <h2 className='capital'>{nextPokemon.name.replace(/-/g, ' ')}</h2>
+        </Link>
       </div>
     </section>
   );
