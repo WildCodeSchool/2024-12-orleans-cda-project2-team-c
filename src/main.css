@@ -63,7 +63,7 @@ body {
   grid-template-rows: auto 1fr auto;
 }
 main {
-  padding-inline: 16px;
+  padding: 108px 16px 64px;
 }
 
 h1,
@@ -81,4 +81,9 @@ h1 {
 
 h2 {
   font-size: var(--fz-24);
+}
+
+/* utils */
+.center {
+  margin-inline: auto;
 }

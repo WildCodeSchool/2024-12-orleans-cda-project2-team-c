@@ -1,35 +1,46 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
+import { useLoaderData } from 'react-router-dom';
 
+import Button from '../components/button';
 import Loader from '../components/loader';
 import PokemonCard from '../components/pokemon-card';
+import SearchSection from '../components/search-section';
+import '../css/pokemon-list.css';
 import ApiConnection from '../utils/api-connection';
 
 export default function PokemonList() {
-  const [pokemons, setPokemons] = useState([]);
+  const loaderData = useLoaderData();
+  const [pokemons, setPokemons] = useState(loaderData);
+
   const [page, setPage] = useState(1);
 
-  useEffect(() => {
-    async function getPokemons() {
-      const pokemonList = [];
+  async function getPokemons(page) {
+    const newPage = await ApiConnection.getPokemonPage(page);
+    setPokemons([...pokemons, ...newPage]);
+  }
 
-      Promise.all(await ApiConnection.getPokemonPage(page)).then((newPage) => {
-        pokemonList.push(...newPage);
-        setPokemons(pokemonList);
-      });
-    }
-
+  function handleClickMoreBtn() {
+    setPage(page + 1);
     getPokemons(page);
-  }, [page]);
+  }
 
   return (
     <section className='pokemon-section'>
-      {pokemons.length ? (
-        pokemons.map((pokemon) => {
-          return <PokemonCard key={pokemon.name} pokemon={pokemon} />;
-        })
-      ) : (
-        <Loader />
-      )}
+      <SearchSection title='Pokélist' />
+
+      <ul className='pokemon-list'>
+        {pokemons.length ? (
+          pokemons.map((pokemon) => {
+            return <PokemonCard key={pokemon.name} pokemon={pokemon} />;
+          })
+        ) : (
+          <Loader />
+        )}
+      </ul>
+
+      <Button onClick={handleClickMoreBtn} className='button--red center'>
+        more
+      </Button>
     </section>
   );
 }

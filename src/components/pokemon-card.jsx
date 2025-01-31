@@ -3,7 +3,7 @@ import Badge from './badge-type';
 
 export default function PokemonCard({ pokemon }) {
   return (
-    <article className='pokemon-card'>
+    <li className='pokemon-card'>
       <div className='pokemon-card__picture'>
         <img src={pokemon.sprites.other['official-artwork'].front_default} alt={pokemon.name} />
       </div>
@@ -19,6 +19,6 @@ export default function PokemonCard({ pokemon }) {
           })}
         </div>
       </div>
-    </article>
+    </li>
   );
 }

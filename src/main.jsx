@@ -10,6 +10,7 @@ import Pokedex from './pages/pokedex';
 import PokemonDisplay from './pages/pokemon-display';
 import PokemonList from './pages/pokemon-list';
 import Quiz from './pages/quiz';
+import ApiConnection from './utils/api-connection';
 
 const router = createBrowserRouter([
   {
@@ -22,6 +23,9 @@ const router = createBrowserRouter([
       {
         path: 'pokelist',
         element: <PokemonList />,
+        loader: () => {
+          return ApiConnection.getPokemonPage();
+        },
       },
       {
         path: 'pokelist/:type',
