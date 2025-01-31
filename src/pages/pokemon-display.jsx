@@ -3,7 +3,7 @@ import Button from '../components/button';
 import Mock from '../components/mock-pokemon';
 import '../css/pokemon-display.css';
 
-const weaknesses = {
+const typeWeaknesses = {
   steel: ['fire', 'fighting', 'ground'],
   fighting: ['flying', 'psychic', 'fairy'],
   dragon: ['ice', 'dragon', 'fairy'],
@@ -26,6 +26,7 @@ const weaknesses = {
 
 export default function PokemonDisplay() {
   const pokemon = Mock;
+
   return (
     <section className='pokemon-display'>
       <Button link={true} href={'/pokelist'} className={'button button--red'}>
@@ -37,8 +38,10 @@ export default function PokemonDisplay() {
         <p>{'0'.repeat(3 - pokemon.id.toString().length) + pokemon.id}</p>
         <div className='left'>
           <div className='left-top box'>
-            <h1>{pokemon.name}</h1>
-            <p>0.7m - 6,9kg</p>
+            <h1>{pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1)}</h1>
+            <p>
+              {pokemon.height / 10}m - {pokemon.weight / 10}kg
+            </p>
           </div>
           <div className='column1'>
             <div className='item'>
@@ -48,7 +51,7 @@ export default function PokemonDisplay() {
                   <>
                     <p>
                       {stat.stat.name.charAt(0).toUpperCase() + stat.stat.name.slice(1)} :
-                      <strong>{stat.base_stat}</strong>
+                      <strong> {stat.base_stat}</strong>
                     </p>
                   </>
                 );
@@ -96,17 +99,19 @@ export default function PokemonDisplay() {
             <div className='item'>
               <h3 className='item-title'>Weaknesses</h3>
               <div>
-                <Badge typeName='fire' />
-                <Badge typeName='ice' />
-
-                <Badge typeName='flying' />
-                <Badge typeName='psychic' />
+                {pokemon.types.map((type, index) =>
+                  typeWeaknesses[type.type.name] ? (
+                    typeWeaknesses[type.type.name].map((weakness, index) => <Badge key={index} typeName={weakness} />)
+                  ) : (
+                    <Badge key={index} typeName={'Unknown'} />
+                  ),
+                )}
               </div>
             </div>
           </div>
         </div>
         <div className='right box'>
-          <img src={Mock.sprites.other['official-artwork'].front_default} alt='' />
+          <img className='artwork' src={Mock.sprites.other['official-artwork'].front_default} alt='' />
         </div>
       </div>
       <div className='pokelist-navigation'>

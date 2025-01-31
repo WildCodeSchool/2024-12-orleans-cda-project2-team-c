@@ -1,6 +1,6 @@
 .pokemon-display {
   max-width: 1045px;
-  margin-bottom: 16px;
+  margin-inline: auto;
 }
 
 .pokemon-container {
@@ -71,9 +71,15 @@
   margin-left: 16px;
 }
 
-/* .pokelist-navigation {
-  border: 2px solid red;
-} */
+.artwork {
+  filter: drop-shadow(rgba(0, 0, 0, 0.25) 0 4px 4px);
+}
+
+.pokelist-navigation {
+  display: flex;
+  gap: 16px;
+  margin-bottom: 42px;
+}
 
 .arrow-button {
   position: relative;
@@ -113,9 +119,4 @@
 .left-arrow {
   justify-content: flex-end;
   clip-path: polygon(100% 0%, 100% 50%, 100% 100%, 10% 100%, 0% 50%, 10% 0);
-}
-
-.pokelist-navigation {
-  display: flex;
-  gap: 16px;
 }
