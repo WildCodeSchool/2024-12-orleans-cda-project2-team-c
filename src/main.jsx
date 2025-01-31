@@ -12,6 +12,9 @@ import PokemonList from './pages/pokemon-list';
 import Quiz from './pages/quiz';
 import ApiConnection from './utils/api-connection';
 
+async function getPokemons() {
+  return await ApiConnection.getPokemonPage();
+}
 const router = createBrowserRouter([
   {
     element: <App />,
@@ -19,6 +22,9 @@ const router = createBrowserRouter([
       {
         path: '/',
         element: <Home />,
+        loader: () => {
+          return getPokemons();
+        },
       },
       {
         path: 'pokelist',

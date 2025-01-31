@@ -18,12 +18,10 @@ function StatBar({ stats }) {
 export default function Stats({ pokemon }) {
   const selectedStats = [pokemon.stats[0], pokemon.stats[1], pokemon.stats[2], pokemon.stats[5]];
   return (
-    <>
-      <div className='stats-content'>
-        {selectedStats.map((stats) => {
-          return <StatBar key={stats.stat.name} stats={stats} />;
-        })}
-      </div>
-    </>
+    <div className='stats-content'>
+      {selectedStats.map((stats) => {
+        return <StatBar key={stats.stat.name} stats={stats} />;
+      })}
+    </div>
   );
 }
