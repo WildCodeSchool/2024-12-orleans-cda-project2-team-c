@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import { useLoaderData } from 'react-router-dom';
 
-import Button from '../components/button';
 import QuizGame from '../components/quiz-game';
 import QuizStart from '../components/quiz-start';
 import '../css/quiz.css';
