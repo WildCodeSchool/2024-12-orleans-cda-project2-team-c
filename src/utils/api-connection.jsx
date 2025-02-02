@@ -55,4 +55,30 @@ export default {
       console.error(error);
     }
   },
+
+  getQuizPokemons: async function () {
+    const randomIdsArray = this.getRandomIdArray();
+
+    try {
+      const pokemonsFetchesArray = [];
+      randomIdsArray.forEach((id) => {
+        pokemonsFetchesArray.push(this.getRessourceByUrl(`${this.baseUrl}pokemon/${id}`));
+      });
+      return Promise.all(pokemonsFetchesArray);
+    } catch (error) {
+      console.error(error);
+    }
+  },
+
+  getRandomIdArray: function () {
+    const randomIds = [];
+
+    while (randomIds.length < 10) {
+      const randomId = Math.floor(Math.random() * 1026);
+      if (!randomIds.includes(randomId)) {
+        randomIds.push(randomId);
+      }
+    }
+    return randomIds;
+  },
 };
