@@ -80,10 +80,8 @@
   align-items: flex-end;
   margin-top: 32px;
 }
-h1 {
-  text-align: center;
-}
-.button--red {
+
+.carousel-container .button--red {
   margin: 0 auto;
   margin-top: 48px;
   margin-bottom: 64px;
