@@ -1,6 +1,7 @@
-import { useState } from 'react';
+import { useRef } from 'react';
 import { Link, useLoaderData } from 'react-router-dom';
 
+import sound from '../assets/icons/sound-blue.png';
 import Badge from '../components/badge-type';
 import Button from '../components/button';
 import '../css/pokemon-display.css';
@@ -28,6 +29,7 @@ const typeWeaknesses = {
 
 export default function PokemonDisplay() {
   const [pokemon, nextPokemon, prevPokemon] = useLoaderData();
+  const audioRef = useRef(null);
 
   return (
     <section className='pokemon-display'>
@@ -84,7 +86,7 @@ export default function PokemonDisplay() {
               })}
             </div>
 
-            <div className='item'>
+            <div className='item item--types'>
               <h3 className='item-title'>Types</h3>
               <div>
                 {pokemon.types.map((type, index) => {
@@ -93,7 +95,7 @@ export default function PokemonDisplay() {
               </div>
             </div>
 
-            <div className='item'>
+            <div className='item item--types'>
               <h3 className='item-title'>Weaknesses</h3>
               <div>
                 {[...new Set(pokemon.types.map((type) => typeWeaknesses[type.type.name] || ['Unknown']).flat())].map(
@@ -106,7 +108,13 @@ export default function PokemonDisplay() {
           </div>
         </div>
         <div className='right box'>
-          <img className='artwork' src={pokemon.sprites.other['official-artwork'].front_default} alt='' />
+          <img
+            className='artwork'
+            src={pokemon.sprites.other['official-artwork'].front_default}
+            alt={pokemon.name.replace(/-/g, ' ')}
+          />
+          <img src={sound} alt='sound icon' className='sound-icon' onClick={() => audioRef.current.play()} />
+          <audio src={pokemon.cries.latest} ref={audioRef}></audio>
         </div>
       </div>
       <div className='pokelist-navigation'>

@@ -1,32 +1,38 @@
 .pokemon-display {
   max-width: 1045px;
+  width: 100%;
   margin-inline: auto;
+}
+
+.button--red {
+  z-index: 5;
 }
 
 .pokemon-container {
   position: relative;
   display: grid;
   grid-template-columns: 1fr 1fr;
-  grid-template-rows: auto 1fr;
+  grid-template-rows: 1fr;
   gap: 16px;
   width: 100%;
-  height: 75vh;
   background-color: var(--grey);
   margin-top: 16px;
   margin-bottom: 12px;
+  border-radius: 8px;
   filter: drop-shadow(rgba(0, 0, 0, 0.25) 0 4px 8px);
 }
 
 .pokemon-container > p {
   position: absolute;
-  margin-top: -72px;
-  left: 50%;
-  transform: translateX(-40%);
+  right: 150px;
+  line-height: 0.8;
   width: 100%;
   text-align: center;
   color: var(--id-number);
-  font-size: 16rem;
+  /* font-size: 16rem; */
+  font-size: clamp(88px, 23.8vw, 256px);
   font-weight: 950;
+  width: fit-content;
 }
 
 .left {
@@ -42,13 +48,17 @@
 
 .right {
   z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
 }
 
-.box,
+/* .box,
 .column1,
 .column2 {
   padding: 20px;
-}
+} */
 
 .item-title {
   margin-bottom: 8px;
@@ -63,7 +73,7 @@
   display: flex;
   gap: 8px;
   flex-wrap: wrap;
-  width: 110%;
+  width: 100%;
 }
 
 .moves-list {
@@ -72,17 +82,31 @@
 
 .artwork {
   filter: drop-shadow(rgba(0, 0, 0, 0.25) 0 4px 4px);
+  max-width: 100%;
+}
+
+.sound-icon {
+  width: 2rem;
+  border-radius: 50%;
+  cursor: pointer;
+  background-color: var(--white);
+  box-shadow: 0px 2px 7px rgba(0, 0, 0, 0.5);
+  padding: 4px;
+}
+
+.sound-icon:active {
+  box-shadow: inset 0px 2px 4px rgba(0, 0, 0, 0.25);
 }
 
 .pokelist-navigation {
   display: flex;
   gap: 16px;
   margin-bottom: 42px;
+  width: 100%;
 }
 
 .arrow-button {
-  position: relative;
-  width: 512px;
+  width: 100%;
   height: 112px;
   background-color: var(--grey);
   font-size: 16px;
@@ -99,14 +123,16 @@
 .arrow-button > p {
   text-align: center;
   color: var(--id-number);
-  font-size: 8rem;
+  /* font-size: 8rem; */
+  font-size: clamp(32px, 11.94vw, 128px);
   font-weight: 900;
   margin-bottom: 8px;
+  padding: 4px;
 }
 
 .arrow {
   display: flex;
-  gap: 48px;
+  gap: 10%;
   align-items: center;
 }
 
@@ -118,4 +144,118 @@
 .left-arrow {
   justify-content: flex-end;
   clip-path: polygon(100% 0%, 100% 50%, 100% 100%, 10% 100%, 0% 50%, 10% 0);
+}
+
+.arrow-up {
+  display: none;
+  margin-top: 16px;
+}
+
+@media screen and (max-width: 1075px) {
+  .pokemon-display {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .pokemon-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 16px;
+  }
+  .right {
+    order: 1;
+    gap: 12px;
+  }
+
+  .left {
+    order: 2;
+  }
+
+  .pokemon-container > p {
+    right: 50%;
+    transform: translateX(50%);
+  }
+
+  .column1,
+  .column2 {
+    display: flex;
+    flex-direction: column;
+    order: 3;
+  }
+
+  .artwork {
+    margin-top: 64px;
+  }
+
+  .left-top {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .left-top > p {
+    order: 2;
+  }
+
+  .arrow-button > p {
+    /* font-size: 5rem; */
+    font-weight: 900;
+    margin-bottom: 8px;
+  }
+
+  .capital {
+    order: 2;
+    padding: 8px;
+    line-height: 0.8;
+  }
+
+  .arrow {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    flex-direction: column;
+    gap: 0px;
+  }
+}
+
+@media screen and (max-width: 680px) {
+  .left {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .column2 {
+    order: 1;
+  }
+
+  /* .pokemon-container > p {
+    font-size: 10rem;
+  } */
+
+  .arrow-up {
+    display: block;
+  }
+
+  /* .arrow-button > p {
+    font-size: 32px;
+  } */
+
+  .arrow-button > h2 {
+    font-size: 16px;
+  }
+
+  /* .item--types {
+    display: flex;
+    flex-direction: column;
+  } */
+}
+
+@media screen and (max-width: 422px) {
+  .column2 > .item:nth-child(2) > div,
+  .column2 > .item:nth-child(3) > div {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
 }
