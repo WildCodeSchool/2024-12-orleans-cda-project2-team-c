@@ -29,7 +29,6 @@
   width: 100%;
   text-align: center;
   color: var(--id-number);
-  /* font-size: 16rem; */
   font-size: clamp(88px, 23.8vw, 256px);
   font-weight: 950;
   width: fit-content;
@@ -53,12 +52,6 @@
   align-items: center;
   justify-content: flex-start;
 }
-
-/* .box,
-.column1,
-.column2 {
-  padding: 20px;
-} */
 
 .item-title {
   margin-bottom: 8px;
@@ -123,7 +116,6 @@
 .arrow-button > p {
   text-align: center;
   color: var(--id-number);
-  /* font-size: 8rem; */
   font-size: clamp(32px, 11.94vw, 128px);
   font-weight: 900;
   margin-bottom: 8px;
@@ -199,7 +191,6 @@
   }
 
   .arrow-button > p {
-    /* font-size: 5rem; */
     font-weight: 900;
     margin-bottom: 8px;
   }
@@ -229,26 +220,13 @@
     order: 1;
   }
 
-  /* .pokemon-container > p {
-    font-size: 10rem;
-  } */
-
   .arrow-up {
     display: block;
   }
 
-  /* .arrow-button > p {
-    font-size: 32px;
-  } */
-
   .arrow-button > h2 {
     font-size: 16px;
   }
-
-  /* .item--types {
-    display: flex;
-    flex-direction: column;
-  } */
 }
 
 @media screen and (max-width: 422px) {
