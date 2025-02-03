@@ -1,0 +1,48 @@
+/* start */
+.quiz-section {
+  max-width: 800px;
+  background: var(--grey);
+  margin-inline: auto;
+  border-radius: 4px;
+  padding: 16px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.25);
+}
+
+.pictures-container {
+  display: flex;
+  justify-content: center;
+  gap: 32px;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+
+.demo-picture {
+  max-width: 312px;
+  min-width: 250px;
+  width: 100%;
+  border: 1px solid var(--black);
+  border-radius: 4px;
+  flex-shrink: 1;
+}
+
+.demo-picture--hidden {
+  filter: brightness(0);
+}
+
+.quiz-section h1 {
+  margin-bottom: 32px;
+}
+
+.quiz-section p {
+  max-width: 656px;
+  margin-inline: auto;
+  margin-bottom: 16px;
+}
+
+.quiz-section .button {
+  margin-inline: auto;
+}
+
+/* game */
+
+/* results */

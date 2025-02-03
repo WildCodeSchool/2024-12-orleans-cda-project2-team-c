@@ -15,6 +15,7 @@ import ApiConnection from './utils/api-connection';
 async function getPokemons() {
   return await ApiConnection.getPokemonPage();
 }
+
 const router = createBrowserRouter([
   {
     element: <App />,
@@ -48,6 +49,9 @@ const router = createBrowserRouter([
       {
         path: 'quiz',
         element: <Quiz />,
+        loader: () => {
+          return ApiConnection.getQuizPokemons();
+        },
       },
       {
         path: '*',

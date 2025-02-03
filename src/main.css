@@ -76,6 +76,7 @@ h6 {
 
 h1 {
   font-size: var(--fz-32);
+  text-align: center;
 }
 
 h2 {
