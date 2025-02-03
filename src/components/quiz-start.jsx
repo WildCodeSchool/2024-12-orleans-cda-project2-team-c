@@ -3,7 +3,7 @@ import Button from './button';
 
 export default function QuizStart({ setHasStarted }) {
   return (
-    <section className='quiz-section'>
+    <section className='quiz-section quiz-section--start'>
       <h1>Quiz</h1>
       <div className='pictures-container'>
         <img src={demoPicture} alt='' className='demo-picture demo-picture--hidden' />

@@ -1,11 +1,15 @@
-/* start */
+/* global */
 .quiz-section {
-  max-width: 800px;
   background: var(--grey);
   margin-inline: auto;
   border-radius: 4px;
   padding: 16px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.25);
+}
+
+/* start */
+.quiz-section--start {
+  max-width: 800px;
 }
 
 .pictures-container {
@@ -44,5 +48,15 @@
 }
 
 /* game */
+.quiz-section--game {
+  max-width: 1045px;
+  display: grid;
+  grid-template-columns: repeat(3, auto);
+}
+
+.quiz-section--game h1 span,
+.quiz-section--game h2 span {
+  font-weight: 400;
+}
 
 /* results */
