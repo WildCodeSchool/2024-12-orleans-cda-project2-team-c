@@ -6,7 +6,7 @@ import App from './App';
 import './main.css';
 import Error404 from './pages/error-404';
 import Home from './pages/home';
-import Pokedex from './pages/pokedex';
+import Pokedex from './pages/pokedex.jsx';
 import PokemonDisplay from './pages/pokemon-display';
 import PokemonList from './pages/pokemon-list';
 import Quiz from './pages/quiz';
