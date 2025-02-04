@@ -78,6 +78,10 @@
   filter: brightness(0);
 }
 
+.quiz-picture--blurred {
+  filter: brightness(0.3) blur(10px) hue-rotate(180deg);
+}
+
 .quiz-options {
   display: flex;
   gap: 16px;

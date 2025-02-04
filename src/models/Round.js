@@ -12,7 +12,7 @@ export default class Round {
       ...pokemon.wrongValues.map((value) => {
         return { value: value, isValid: false, id: crypto.randomUUID() };
       }),
-      { value: pokemon.name, isValid: true },
+      { value: pokemon.name, isValid: true, id: crypto.randomUUID() },
     ];
     this.shuffleAnswers();
     this.isValid = false;

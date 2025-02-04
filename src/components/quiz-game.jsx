@@ -8,7 +8,8 @@ export default function QuizGame({ game }) {
   const [timer, setTimer] = useState(3000);
   const [timerIsRunning, setTimerIsRunning] = useState(true);
   const [usedHints, setUsedHints] = useState([false, false]);
-  console.log('render');
+  const [areTypesVisible, setAreTypesVisible] = useState(false);
+  const [isPictureBlurred, setIsPictureBlurred] = useState(false);
 
   // timer managment **************************************************
   useEffect(() => {
@@ -36,6 +37,11 @@ export default function QuizGame({ game }) {
     // // mettre à jour la couleur des boutons et afficher le bouton question suivante
 
     // vérifier numéro du tour, sur dernier tour, endGame, sinon nextROund
+    if (questionNumber < 9) {
+      nextRound();
+    } else {
+      endGame();
+    }
   }
 
   function nextRound() {
@@ -50,23 +56,26 @@ export default function QuizGame({ game }) {
     endRound();
   }
 
-  function handleClickHintBtn(e, index) {
-    console.log(e);
-
-    game.rounds[questionNumber].setPenalty();
+  function handleClickHintBtn(index) {
     setUsedHints((actualState) => {
       actualState[index] = true;
-      console.log(actualState);
-      console.log(actualState);
-
-      return actualState;
+      return [...actualState];
     });
-    console.log('donnée mises à jour: ' + usedHints);
+    game.rounds[questionNumber].setPenalty();
+    if (index) {
+      revealBlurredPicture();
+    } else {
+      revealTypes();
+    }
   }
 
-  function revealTypes() {}
+  function revealTypes() {
+    setAreTypesVisible(true);
+  }
 
-  function revealBlurredPicture() {}
+  function revealBlurredPicture() {
+    setIsPictureBlurred(true);
+  }
 
   // markup **************************************************
   return (
@@ -78,36 +87,37 @@ export default function QuizGame({ game }) {
       {/* hints */}
       <article className='hints-container'>
         <h2>
-          Hints <span>(2/2)</span>
+          Hints <span>({2 - game.rounds[questionNumber].penalty}/2)</span>
         </h2>
 
-        {/* <Button className='button--red' onClick={() => handleClickHintBtn(0)} disabled={usedHints[0]}> */}
         <Button
           className={usedHints[0] ? 'button--disabled' : 'button--red'}
-          onClick={(e) => handleClickHintBtn(e, 0)}
+          onClick={() => handleClickHintBtn(0)}
           disabled={usedHints[0]}
         >
           Hint 1
         </Button>
 
-        {game.rounds[questionNumber].types.map((type, i) => (
-          <Badge typeName={type} key={i} />
-        ))}
+        {areTypesVisible && game.rounds[questionNumber].types.map((type, i) => <Badge typeName={type} key={i} />)}
 
         <Button
           className={usedHints[1] ? 'button--disabled' : 'button--red'}
-          onClick={(e) => handleClickHintBtn(e, 1)}
+          onClick={() => handleClickHintBtn(1)}
           disabled={usedHints[1]}
         >
           Hint 2
         </Button>
       </article>
 
-      <img src={game.rounds[questionNumber].picture} alt='' className='quiz-picture quiz-picture--hidden' />
+      <img
+        src={game.rounds[questionNumber].picture}
+        alt=''
+        className={`quiz-picture ${isPictureBlurred ? 'quiz-picture--blurred' : 'quiz-picture--hidden'}`}
+      />
 
       <div className='quiz-data'>
         <p className='quiz-data__score'>
-          Score: <span>{game.score}/20</span>
+          Score: <span>{game.score}/30</span>
         </p>
         <p className='quiz-data__timer'>{`00:${
           (timer / 1000).toString().length === 1 ? '0' + timer / 1000 : timer / 1000
