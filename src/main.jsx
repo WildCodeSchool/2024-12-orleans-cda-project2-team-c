@@ -39,10 +39,11 @@ const router = createBrowserRouter([
         path: 'pokemon/:id',
         element: <PokemonDisplay />,
         loader: (route) => {
+          const id = parseInt(route.params.id);
           return Promise.all([
             ApiConnection.getOnePokemon(route.params.id),
-            ApiConnection.getOnePokemon(parseInt(route.params.id) === 1025 ? 1 : parseInt(route.params.id) + 1),
-            ApiConnection.getOnePokemon(parseInt(route.params.id) === 1 ? 1025 : parseInt(route.params.id) - 1),
+            ApiConnection.getOnePokemon((id % 1025) + 1),
+            ApiConnection.getOnePokemon((id - 1 + 1025) % 1025 || 1025),
           ]);
         },
       },
