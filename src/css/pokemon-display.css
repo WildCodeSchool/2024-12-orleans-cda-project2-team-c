@@ -226,7 +226,7 @@
     display: block;
   }
 
-  .arrow-button > h2 {
+  .arrow-bun > h2 {
     font-size: 16px;
   }
 
@@ -236,7 +236,4 @@
     display: flex;
     justify-content: center;
   }
-}
-
-@media screen and (max-width: 422px) {
 }
