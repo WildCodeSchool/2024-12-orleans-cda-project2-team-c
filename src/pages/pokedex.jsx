@@ -6,7 +6,7 @@ import SearchSection from '../components/search-section';
 import '../css/pokemon-list.css';
 import mocks from '../mock-pokemons';
 
-const mock = mock;
+const mock = 1;
 localStorage.setItem('result', JSON.stringify(mock));
 
 export default function Pokedex() {
