@@ -16,33 +16,36 @@ export default function Pokedex() {
   }, []);
 
   return (
-    <section className='pokemon-section'>
-      <SearchSection title='Pokélist' />
-      {pokemonResult.length > 0 ? (
-        <ul className='pokemon-list'>
-          {pokemonResult.map((pokemon) => {
-            return <PokemonCard key={pokemon.name} pokemon={pokemon} />;
-          })}
-        </ul>
-      ) : (
-        <div className='oups'>
-          <p>
-            Oups... seems like you don’t have any Pokémon in your Pokédex yet...
-            <br />
-            Go and try to find some in the quiz !
-          </p>
+    <>
+      <h3>My Pokedex</h3>
+      <section className='pokemon-section'>
+        <SearchSection title='Pokélist' />
+        {pokemonResult.length > 0 ? (
+          <ul className='pokemon-list'>
+            {pokemonResult.map((pokemon) => {
+              return <PokemonCard key={pokemon.name} pokemon={pokemon} />;
+            })}
+          </ul>
+        ) : (
+          <div className='oups'>
+            <p>
+              Oups... seems like you don’t have any Pokémon in your Pokédex yet...
+              <br />
+              Go and try to find some in the quiz !
+            </p>
+            <Button className='button--red center' link={true}>
+              Play
+            </Button>
+          </div>
+        )}
+        {pokemonResult.length > 0 ? (
           <Button className='button--red center' link={true}>
             Play
           </Button>
-        </div>
-      )}
-      {pokemonResult.length > 0 ? (
-        <Button className='button--red center' link={true}>
-          Play
-        </Button>
-      ) : (
-        ''
-      )}
-    </section>
+        ) : (
+          ''
+        )}
+      </section>
+    </>
   );
 }
