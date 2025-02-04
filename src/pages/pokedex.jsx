@@ -4,10 +4,10 @@ import Button from '../components/button';
 import PokemonCard from '../components/pokemon-card';
 import SearchSection from '../components/search-section';
 import '../css/pokemon-list.css';
-import Mocks from '../mock-pokemons';
+import mocks from '../mock-pokemons';
 
-const Mock = 1;
-localStorage.setItem('result', JSON.stringify(Mock));
+const mock = mock;
+localStorage.setItem('result', JSON.stringify(mock));
 
 export default function Pokedex() {
   const [pokemonResult, setPokemon] = useState(0);
