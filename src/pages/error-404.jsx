@@ -1,11 +1,8 @@
-import { useLocation } from 'react-router-dom';
-
 import errorImg from '../assets/images/error-404-mewtwo.png';
 import Button from '../components/button';
 import '../css/error-404.css';
 
 export default function Error404() {
-  const location = useLocation();
   return (
     <>
       <Button link={true} href={'/pokelist'} className={'button button--red'}>
