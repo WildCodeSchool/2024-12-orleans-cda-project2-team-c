@@ -89,3 +89,88 @@
 }
 
 /* results */
+
+.quiz-section--result {
+  max-width: 956px;
+  display: flex;
+  flex-direction: column;
+}
+
+.score {
+  font-weight: 900;
+  font-size: var(--fz-64);
+}
+
+.score-green {
+  color: var(--success);
+}
+
+.score-orange {
+  color: var(--warning);
+}
+
+.score-red {
+  color: var(--danger);
+}
+
+.results-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin: 32px;
+}
+
+.pokemon-img {
+  width: 100%;
+}
+
+.pokemon-img--disabled {
+  filter: brightness(0);
+}
+
+.right-answer {
+  border: 2px solid var(--success);
+  border-radius: 4px;
+}
+
+.wrong-answer {
+  border: 2px solid var(--danger);
+  border-radius: 4px;
+}
+
+.result-item {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.result-item--img {
+  position: relative;
+  width: 140px;
+}
+
+.answer-icon {
+  position: absolute;
+  width: 32px;
+  right: 8px;
+  bottom: 8px;
+}
+
+.pokemon-id {
+  font-size: var(--fz-16);
+  color: var(--text-hint);
+  font-weight: 400;
+}
+
+.pokemon-name {
+  font-size: var(--fz-18);
+  font-weight: 700;
+}
+
+@media screen and (max-width: 408px) {
+  .result-item--img {
+    width: 100%;
+  }
+}
