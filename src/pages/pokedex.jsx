@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 
+import Btnup from '../components/btnup';
 import Button from '../components/button';
 import PokemonCard from '../components/pokemon-card';
 import SearchSection from '../components/search-section';
@@ -17,9 +18,8 @@ export default function Pokedex() {
 
   return (
     <>
-      <h3>My Pokedex</h3>
       <section className='pokemon-section'>
-        <SearchSection title='Pokélist' />
+        <SearchSection title='Pokédex' />
         {pokemonResult.length > 0 ? (
           <ul className='pokemon-list'>
             {pokemonResult.map((pokemon) => {
@@ -46,6 +46,7 @@ export default function Pokedex() {
           ''
         )}
       </section>
+      <Btnup />
     </>
   );
 }

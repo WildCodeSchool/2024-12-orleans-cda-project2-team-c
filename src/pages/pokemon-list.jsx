@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react';
+import { useState } from 'react';
 import { useLoaderData } from 'react-router-dom';
 
 import Btnup from '../components/btnup';
@@ -43,8 +43,8 @@ export default function PokemonList() {
         <Button onClick={handleClickMoreBtn} className='button--red center'>
           more
         </Button>
-        <Btnup />
       </section>
+      <Btnup />
     </>
   );
 }
