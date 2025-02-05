@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 
-import Btnup from '../components/btnup';
 import Button from '../components/button';
+import Btnup from '../components/button-up';
 import PokemonCard from '../components/pokemon-card';
 import SearchSection from '../components/search-section';
 import '../css/pokemon-list.css';

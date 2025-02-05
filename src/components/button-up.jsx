@@ -1,5 +1,5 @@
 import up from '../assets/icons/chevron-up-blue.png';
-import '../css/btnup.css';
+import '../css/button-up.css';
 
 export default function Btnup() {
   function scroll() {
@@ -12,7 +12,7 @@ export default function Btnup() {
   return (
     <>
       <div className='circle'>
-        <img src={up} alt='' className='btn-up' onClick={scroll} />
+        <img src={up} alt='' className='button-up' onClick={scroll} />
       </div>
     </>
   );

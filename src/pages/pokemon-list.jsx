@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import { useLoaderData } from 'react-router-dom';
 
-import Btnup from '../components/btnup';
 import Button from '../components/button';
+import Btnup from '../components/button-up';
 import Loader from '../components/loader';
 import PokemonCard from '../components/pokemon-card';
 import SearchSection from '../components/search-section';
