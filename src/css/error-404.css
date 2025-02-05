@@ -10,7 +10,7 @@
   padding: 16px;
 }
 
-.error404 {
+.error-404 {
   line-height: 0.2;
   color: var(--id-number);
   font-size: clamp(100px, 22vw, 220px);
