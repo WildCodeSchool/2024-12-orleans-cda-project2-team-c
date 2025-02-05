@@ -87,3 +87,7 @@ h2 {
 .center {
   margin-inline: auto;
 }
+
+.capital {
+  text-transform: capitalize;
+}

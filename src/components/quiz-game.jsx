@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 import Badge from './badge-type';
 import Button from './button';
@@ -10,6 +10,9 @@ export default function QuizGame({ game }) {
   const [usedHints, setUsedHints] = useState([false, false]);
   const [areTypesVisible, setAreTypesVisible] = useState(false);
   const [isPictureBlurred, setIsPictureBlurred] = useState(false);
+  const [isNextButtonVisible, setIsNextButtonVisible] = useState(false);
+  const quizOptionsRef = useRef(null);
+  const pictureRef = useRef(null);
 
   // timer managment **************************************************
   useEffect(() => {
@@ -27,32 +30,54 @@ export default function QuizGame({ game }) {
   }, [timerIsRunning, timer]);
 
   // functions **************************************************
-  function endRound() {
-    // couper timer
+  function endRound(e = null, id = null) {
     setTimerIsRunning(false);
 
-    // vérifier réponse
+    [...quizOptionsRef.current.children].forEach((button) => {
+      button.disabled = true;
+      button.classList.replace('button--yellow', 'button--disabled');
+    });
 
-    // mettre à jour le visuel
-    // // mettre à jour la couleur des boutons et afficher le bouton question suivante
+    if (id) {
+      if (game.rounds[questionNumber].checkAnswer(id)) {
+        e.target.classList.replace('button--disabled', 'button--success');
+        pictureRef.current.classList.remove('quiz-picture--hidden', 'quiz-picture--blurred');
+      } else {
+        e.target.classList.replace('button--disabled', 'button--red');
+      }
+    }
 
-    // vérifier numéro du tour, sur dernier tour, endGame, sinon nextROund
     if (questionNumber < 9) {
-      nextRound();
+      setIsNextButtonVisible(true);
     } else {
       endGame();
     }
   }
 
   function nextRound() {
-    //
+    setQuestionNumber(questionNumber + 1);
+    pictureRef.current.classList.add('quiz-picture--hidden');
+    setIsNextButtonVisible(false);
+    setTimerIsRunning(true);
+    setTimer(3000);
   }
 
   function endGame() {
-    //
+    console.log('endGame');
   }
 
-  function handleClickPokemonBtn(isValid) {
+  function handleClickPokemonBtn(e, id) {
+    [...quizOptionsRef.current.children].forEach((button) => {
+      button.disabled = true;
+      button.classList.replace('button--yellow', 'button--disabled');
+    });
+    if (game.rounds[questionNumber].checkAnswer(id)) {
+      e.target.classList.replace('button--disabled', 'button--success');
+      pictureRef.current.classList.remove('quiz-picture--hidden', 'quiz-picture--blurred');
+    } else {
+      e.target.classList.replace('button--disabled', 'button--red');
+    }
+
     endRound();
   }
 
@@ -113,28 +138,34 @@ export default function QuizGame({ game }) {
         src={game.rounds[questionNumber].picture}
         alt=''
         className={`quiz-picture ${isPictureBlurred ? 'quiz-picture--blurred' : 'quiz-picture--hidden'}`}
+        ref={pictureRef}
       />
 
       <div className='quiz-data'>
         <p className='quiz-data__score'>
           Score: <span>{game.score}/30</span>
         </p>
-        <p className='quiz-data__timer'>{`00:${
+        <p className={`quiz-data__timer ${timer / 1000 < 6 ? 'quiz-data__timer--danger' : ''}`}>{`00:${
           (timer / 1000).toString().length === 1 ? '0' + timer / 1000 : timer / 1000
         }`}</p>
+        {isNextButtonVisible && (
+          <Button className='button-yellow' onClick={nextRound}>
+            Next
+          </Button>
+        )}
       </div>
 
-      <div className='quiz-options'>
+      <div className='quiz-options' ref={quizOptionsRef}>
         {game.rounds[questionNumber].answers.map((answer) => {
           return (
             <Button
-              className='button--yellow'
+              className='button--yellow capital'
               key={answer.id}
-              onClick={() => {
-                handleClickPokemonBtn(answer.isValid);
+              onClick={(e) => {
+                endRound(e, answer.id);
               }}
             >
-              {answer.value}
+              {answer.value.replace(/-/g, ' ')}
             </Button>
           );
         })}
