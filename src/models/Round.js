@@ -4,14 +4,15 @@ export default class Round {
     this.name = pokemon.name;
     this.picture = pokemon.sprites.other['official-artwork'].front_default;
     this.types = [];
+    this.penalty = 0;
     pokemon.types.forEach((type) => {
       this.types.push(type.type.name);
     });
     this.answers = [
       ...pokemon.wrongValues.map((value) => {
-        return { answer: value, isValid: false };
+        return { value: value, isValid: false, id: crypto.randomUUID() };
       }),
-      { value: pokemon.name, isValid: true },
+      { value: pokemon.name, isValid: true, id: crypto.randomUUID() },
     ];
     this.shuffleAnswers();
     this.isValid = false;
@@ -24,5 +25,9 @@ export default class Round {
       this.answers[i] = this.answers[newIndex];
       this.answers[newIndex] = tmp;
     }
+  }
+
+  setPenalty() {
+    this.penalty++;
   }
 }

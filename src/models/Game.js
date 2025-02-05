@@ -3,17 +3,16 @@ import Round from './Round';
 
 export default class Game {
   constructor(pokemons) {
-    // this.pokemons = pokemons;
-    this.results = [];
-    this.score = 0;
     this.rounds = pokemons.map((pokemon) => {
       this.setWrongValues(pokemon, pokemonNames);
       return new Round(pokemon);
     });
+    this.results = [];
+    this.score = 0;
   }
 
-  updateScore(points = 2) {
-    this.score += points;
+  updateScore(round) {
+    this.score += 3 - round.penalty;
   }
 
   updateResults(index, isCorrect) {
