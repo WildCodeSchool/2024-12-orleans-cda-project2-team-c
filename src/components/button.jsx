@@ -1,11 +1,13 @@
+import { Link } from 'react-router-dom';
+
 import '../css/button.css';
 
 export default function Button({ link, href, className, children, onClick, disabled = false }) {
   if (link) {
     return (
-      <a href={href} className={`button ${className}`}>
+      <Link to={href} className={`button ${className}`}>
         {children}
-      </a>
+      </Link>
     );
   } else {
     return (

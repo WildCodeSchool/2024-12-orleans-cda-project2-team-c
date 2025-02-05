@@ -1,0 +1,22 @@
+.circle > .button-up {
+  width: 32px;
+}
+.circle {
+  border-radius: 50%;
+  width: 48px;
+  height: 48px;
+  cursor: pointer;
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  right: 2.5%;
+  bottom: 16%;
+  background-color: var(--yellow);
+}
+@media screen and (max-width: 331px) {
+  .button-up,
+  .circle {
+    right: 4%;
+  }
+}

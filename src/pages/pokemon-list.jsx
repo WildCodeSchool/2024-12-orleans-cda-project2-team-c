@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useLoaderData } from 'react-router-dom';
 
 import Button from '../components/button';
+import ButtonUp from '../components/button-up';
 import Loader from '../components/loader';
 import PokemonCard from '../components/pokemon-card';
 import SearchSection from '../components/search-section';
@@ -25,22 +26,25 @@ export default function PokemonList() {
   }
 
   return (
-    <section className='pokemon-section'>
-      <SearchSection title='Pokélist' />
+    <>
+      <section className='pokemon-section'>
+        <SearchSection title='Pokélist' />
 
-      <ul className='pokemon-list'>
-        {pokemons.length ? (
-          pokemons.map((pokemon) => {
-            return <PokemonCard key={pokemon.name} pokemon={pokemon} />;
-          })
-        ) : (
-          <Loader />
-        )}
-      </ul>
+        <ul className='pokemon-list'>
+          {pokemons.length ? (
+            pokemons.map((pokemon) => {
+              return <PokemonCard key={pokemon.name} pokemon={pokemon} />;
+            })
+          ) : (
+            <Loader />
+          )}
+        </ul>
 
-      <Button onClick={handleClickMoreBtn} className='button--red center'>
-        more
-      </Button>
-    </section>
+        <Button onClick={handleClickMoreBtn} className='button--red center'>
+          more
+        </Button>
+      </section>
+      <ButtonUp />
+    </>
   );
 }
