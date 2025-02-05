@@ -1,6 +1,7 @@
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import { useLoaderData } from 'react-router-dom';
 
+import Btnup from '../components/btnup';
 import Button from '../components/button';
 import Loader from '../components/loader';
 import PokemonCard from '../components/pokemon-card';
@@ -23,24 +24,27 @@ export default function PokemonList() {
     setPage(page + 1);
     getPokemons(page);
   }
-
+  const upRef = useRef(null);
   return (
-    <section className='pokemon-section'>
-      <SearchSection title='Pokélist' />
+    <>
+      <section className='pokemon-section'>
+        <SearchSection title='Pokélist' ref={upRef} />
 
-      <ul className='pokemon-list'>
-        {pokemons.length ? (
-          pokemons.map((pokemon) => {
-            return <PokemonCard key={pokemon.name} pokemon={pokemon} />;
-          })
-        ) : (
-          <Loader />
-        )}
-      </ul>
+        <ul className='pokemon-list'>
+          {pokemons.length ? (
+            pokemons.map((pokemon) => {
+              return <PokemonCard key={pokemon.name} pokemon={pokemon} />;
+            })
+          ) : (
+            <Loader />
+          )}
+        </ul>
 
-      <Button onClick={handleClickMoreBtn} className='button--red center'>
-        more
-      </Button>
-    </section>
+        <Button onClick={handleClickMoreBtn} className='button--red center'>
+          more
+        </Button>
+        <Btnup upRef={upRef} />
+      </section>
+    </>
   );
 }
