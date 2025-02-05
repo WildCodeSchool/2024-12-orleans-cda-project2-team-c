@@ -24,11 +24,11 @@ export default function PokemonList() {
     setPage(page + 1);
     getPokemons(page);
   }
-  const upRef = useRef(null);
+
   return (
     <>
       <section className='pokemon-section'>
-        <SearchSection title='Pokélist' ref={upRef} />
+        <SearchSection title='Pokélist' />
 
         <ul className='pokemon-list'>
           {pokemons.length ? (
@@ -43,7 +43,7 @@ export default function PokemonList() {
         <Button onClick={handleClickMoreBtn} className='button--red center'>
           more
         </Button>
-        <Btnup upRef={upRef} />
+        <Btnup />
       </section>
     </>
   );

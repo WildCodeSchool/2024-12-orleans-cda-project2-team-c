@@ -3,7 +3,7 @@ import up from '../assets/icons/chevron-up-blue.png';
 import '../css/btnup.css';
 
 export default function Btnup({ upRef }) {
-  function scroll() {
+  function Scroll() {
     window.scrollTo({
       top: 0,
       behavior: 'smooth',
@@ -16,7 +16,7 @@ export default function Btnup({ upRef }) {
   return (
     <>
       <div className='circle'>
-        <img src={up} alt='' className='btn-up' onClick={scroll} />
+        <img src={up} alt='' className='btn-up' onClick={Scroll} />
       </div>
     </>
   );
