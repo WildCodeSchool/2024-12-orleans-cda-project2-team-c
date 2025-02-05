@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useLoaderData } from 'react-router-dom';
 
 import Button from '../components/button';
-import Btnup from '../components/button-up';
+import ButtonUp from '../components/button-up';
 import Loader from '../components/loader';
 import PokemonCard from '../components/pokemon-card';
 import SearchSection from '../components/search-section';
@@ -44,7 +44,7 @@ export default function PokemonList() {
           more
         </Button>
       </section>
-      <Btnup />
+      <ButtonUp />
     </>
   );
 }

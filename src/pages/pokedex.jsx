@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 
 import Button from '../components/button';
-import Btnup from '../components/button-up';
+import ButtonUp from '../components/button-up';
 import PokemonCard from '../components/pokemon-card';
 import SearchSection from '../components/search-section';
 import '../css/pokemon-list.css';
@@ -46,7 +46,7 @@ export default function Pokedex() {
           ''
         )}
       </section>
-      <Btnup />
+      <ButtonUp />
     </>
   );
 }

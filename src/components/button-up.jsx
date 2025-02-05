@@ -1,7 +1,7 @@
 import up from '../assets/icons/chevron-up-blue.png';
 import '../css/button-up.css';
 
-export default function Btnup() {
+export default function ButtonUp() {
   function scroll() {
     window.scrollTo({
       top: 0,
