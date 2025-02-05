@@ -3,9 +3,9 @@ import { useEffect, useRef, useState } from 'react';
 import Badge from './badge-type';
 import Button from './button';
 
-export default function QuizGame({ game }) {
+export default function QuizGame({ game, setHasFinished }) {
   const [questionNumber, setQuestionNumber] = useState(0);
-  const [timer, setTimer] = useState(3000);
+  const [timer, setTimer] = useState(15000);
   const [timerIsRunning, setTimerIsRunning] = useState(true);
   const [usedHints, setUsedHints] = useState([false, false]);
   const [areTypesVisible, setAreTypesVisible] = useState(false);
@@ -42,6 +42,7 @@ export default function QuizGame({ game }) {
       if (game.rounds[questionNumber].checkAnswer(id)) {
         e.target.classList.replace('button--disabled', 'button--success');
         pictureRef.current.classList.remove('quiz-picture--hidden', 'quiz-picture--blurred');
+        game.updateScore(game.rounds[questionNumber]);
       } else {
         e.target.classList.replace('button--disabled', 'button--red');
       }
@@ -59,26 +60,14 @@ export default function QuizGame({ game }) {
     pictureRef.current.classList.add('quiz-picture--hidden');
     setIsNextButtonVisible(false);
     setTimerIsRunning(true);
-    setTimer(3000);
+    setAreTypesVisible(false);
+    setIsPictureBlurred(false);
+    setUsedHints([false, false]);
+    setTimer(15000);
   }
 
   function endGame() {
-    console.log('endGame');
-  }
-
-  function handleClickPokemonBtn(e, id) {
-    [...quizOptionsRef.current.children].forEach((button) => {
-      button.disabled = true;
-      button.classList.replace('button--yellow', 'button--disabled');
-    });
-    if (game.rounds[questionNumber].checkAnswer(id)) {
-      e.target.classList.replace('button--disabled', 'button--success');
-      pictureRef.current.classList.remove('quiz-picture--hidden', 'quiz-picture--blurred');
-    } else {
-      e.target.classList.replace('button--disabled', 'button--red');
-    }
-
-    endRound();
+    setHasFinished(true);
   }
 
   function handleClickHintBtn(index) {

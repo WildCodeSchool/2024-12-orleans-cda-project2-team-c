@@ -33,6 +33,8 @@ export default class Round {
 
   checkAnswer(id) {
     this.isValid = this.answers.filter((answer) => answer.id === id)[0].isValid;
+    console.log(this.answers.filter((answer) => answer.id === id)[0]);
+
     return this.isValid;
   }
 }
