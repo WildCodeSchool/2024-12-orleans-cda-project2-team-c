@@ -8,11 +8,7 @@ import SearchSection from '../components/search-section';
 import '../css/pokemon-list.css';
 
 export default function Pokedex() {
-  // const [pokemonResult, setPokemon] = useState(0);
   const myPokemons = useLoaderData();
-  console.log(myPokemons);
-
-  // const sortAscending = (myPokemons) => array.sort((a, b) => a - b);
 
   return (
     <>
