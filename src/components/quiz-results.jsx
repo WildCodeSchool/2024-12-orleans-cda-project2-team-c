@@ -3,15 +3,13 @@ import wrong from '../assets/icons/cross-red.png';
 import Button from './button';
 
 export default function QuizResults({ game }) {
-  console.log(game);
-
   return (
     <section className='quiz-section quiz-section--result'>
       <h1>Results !</h1>
-      <p className={`score ${game.score > 6 ? 'score-green' : game.score < 4 ? 'score-red' : 'score-orange'}`}>
+      <p className={`score ${game.score > 20 ? 'score-green' : game.score < 10 ? 'score-red' : 'score-orange'}`}>
         {game.score}/30
       </p>
-      <Button link href={'/pokelist'} className={'button--yellow'}>
+      <Button link={true} href={'/quiz'} className={'button--yellow'}>
         {'New game'}
       </Button>
       <div className='results-container'>
@@ -26,8 +24,8 @@ export default function QuizResults({ game }) {
               <img src={round.isValid ? right : wrong} alt='' className='answer-icon' />
             </div>
             {round.isValid ? (
-              <p className='pokemon-name'>
-                {round.name}
+              <p className='pokemon-name capital'>
+                {round.name.replace(/-/g, ' ')}
                 <span className='pokemon-id'> N°{round.id}</span>
               </p>
             ) : (

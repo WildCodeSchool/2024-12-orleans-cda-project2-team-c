@@ -11,6 +11,13 @@ export default function QuizGame({ game, setHasFinished }) {
   const [areTypesVisible, setAreTypesVisible] = useState(false);
   const [isPictureBlurred, setIsPictureBlurred] = useState(false);
   const [isNextButtonVisible, setIsNextButtonVisible] = useState(false);
+  const [buttonsState, setButtonsState] = useState(
+    game.rounds[questionNumber].answers.map(() => ({
+      disabled: false,
+      className: 'button--yellow',
+    })),
+  );
+
   const quizOptionsRef = useRef(null);
   const pictureRef = useRef(null);
 
@@ -33,19 +40,23 @@ export default function QuizGame({ game, setHasFinished }) {
   function endRound(e = null, id = null) {
     setTimerIsRunning(false);
 
-    [...quizOptionsRef.current.children].forEach((button) => {
-      button.disabled = true;
-      button.classList.replace('button--yellow', 'button--disabled');
-    });
+    setButtonsState((prevState) =>
+      prevState.map((btn, index) => {
+        const isClicked = id === game.rounds[questionNumber].answers[index].id;
+        return {
+          disabled: true,
+          className: isClicked
+            ? game.rounds[questionNumber].checkAnswer(id)
+              ? 'button--success'
+              : 'button--red'
+            : 'button--disabled',
+        };
+      }),
+    );
 
-    if (id) {
-      if (game.rounds[questionNumber].checkAnswer(id)) {
-        e.target.classList.replace('button--disabled', 'button--success');
-        pictureRef.current.classList.remove('quiz-picture--hidden', 'quiz-picture--blurred');
-        game.updateScore(game.rounds[questionNumber]);
-      } else {
-        e.target.classList.replace('button--disabled', 'button--red');
-      }
+    if (id && game.rounds[questionNumber].checkAnswer(id)) {
+      pictureRef.current.classList.remove('quiz-picture--hidden', 'quiz-picture--blurred');
+      game.updateScore(game.rounds[questionNumber]);
     }
 
     if (questionNumber < 9) {
@@ -64,6 +75,12 @@ export default function QuizGame({ game, setHasFinished }) {
     setIsPictureBlurred(false);
     setUsedHints([false, false]);
     setTimer(15000);
+    setButtonsState(
+      game.rounds[questionNumber + 1].answers.map(() => ({
+        disabled: false,
+        className: 'button--yellow',
+      })),
+    );
   }
 
   function endGame() {
@@ -145,14 +162,13 @@ export default function QuizGame({ game, setHasFinished }) {
       </div>
 
       <div className='quiz-options' ref={quizOptionsRef}>
-        {game.rounds[questionNumber].answers.map((answer) => {
+        {game.rounds[questionNumber].answers.map((answer, index) => {
           return (
             <Button
-              className='button--yellow capital'
               key={answer.id}
-              onClick={(e) => {
-                endRound(e, answer.id);
-              }}
+              className={`capital ${buttonsState[index].className}`}
+              onClick={(e) => endRound(e, answer.id)}
+              disabled={buttonsState[index].disabled}
             >
               {answer.value.replace(/-/g, ' ')}
             </Button>
