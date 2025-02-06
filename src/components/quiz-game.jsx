@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import Badge from './badge-type';
 import Button from './button';
@@ -9,27 +9,21 @@ export default function QuizGame({ game, setHasFinished }) {
   const [timerIsRunning, setTimerIsRunning] = useState(true);
   const [usedHints, setUsedHints] = useState([false, false]);
   const [areTypesVisible, setAreTypesVisible] = useState(false);
-  const [isPictureBlurred, setIsPictureBlurred] = useState(false);
+  const [pictureState, setPictureState] = useState('hidden');
   const [isNextButtonVisible, setIsNextButtonVisible] = useState(false);
-  const [buttonsState, setButtonsState] = useState(
-    game.rounds[questionNumber].answers.map(() => ({
-      disabled: false,
-      className: 'button--yellow',
-    })),
-  );
-
-  const quizOptionsRef = useRef(null);
-  const pictureRef = useRef(null);
+  const [clickedButton, setClickedButton] = useState(null);
+  const isAnswerRight = clickedButton && game.rounds[questionNumber].checkAnswer(clickedButton);
 
   // timer managment **************************************************
   useEffect(() => {
-    const timerInterval = setInterval(() => {
-      if (timer === 0) {
-        endRound();
-      } else if (timerIsRunning) {
+    let timerInterval;
+    if (timer === 0) {
+      endRound();
+    } else if (timerIsRunning) {
+      timerInterval = setInterval(() => {
         setTimer(timer - 1000);
-      }
-    }, 1000);
+      }, 1000);
+    }
 
     return () => {
       clearInterval(timerInterval);
@@ -37,24 +31,13 @@ export default function QuizGame({ game, setHasFinished }) {
   }, [timerIsRunning, timer]);
 
   // functions **************************************************
-  function endRound(e = null, id = null) {
+  function endRound(id = null) {
     setTimerIsRunning(false);
-    setButtonsState((prevState) =>
-      prevState.map((btn, index) => {
-        const isClicked = id === game.rounds[questionNumber].answers[index].id;
-        return {
-          disabled: true,
-          className: isClicked
-            ? game.rounds[questionNumber].checkAnswer(id)
-              ? 'button--success'
-              : 'button--red'
-            : 'button--disabled',
-        };
-      }),
-    );
+
+    setClickedButton(id);
 
     if (id && game.rounds[questionNumber].checkAnswer(id)) {
-      pictureRef.current.classList.remove('quiz-picture--hidden', 'quiz-picture--blurred');
+      setPictureState('');
       game.updateScore(game.rounds[questionNumber]);
     }
 
@@ -67,19 +50,13 @@ export default function QuizGame({ game, setHasFinished }) {
 
   function nextRound() {
     setQuestionNumber(questionNumber + 1);
-    pictureRef.current.classList.add('quiz-picture--hidden');
+    setPictureState('hidden');
     setIsNextButtonVisible(false);
     setTimerIsRunning(true);
     setAreTypesVisible(false);
-    setIsPictureBlurred(false);
     setUsedHints([false, false]);
     setTimer(15000);
-    setButtonsState(
-      game.rounds[questionNumber + 1].answers.map(() => ({
-        disabled: false,
-        className: 'button--yellow',
-      })),
-    );
+    setClickedButton(null);
   }
 
   function endGame() {
@@ -104,7 +81,7 @@ export default function QuizGame({ game, setHasFinished }) {
   }
 
   function revealBlurredPicture() {
-    setIsPictureBlurred(true);
+    setPictureState('blurred');
   }
 
   // markup **************************************************
@@ -139,13 +116,7 @@ export default function QuizGame({ game, setHasFinished }) {
         </Button>
       </article>
 
-      <img
-        src={game.rounds[questionNumber].picture}
-        alt=''
-        className={`quiz-picture ${isPictureBlurred ? 'quiz-picture--blurred' : 'quiz-picture--hidden'}`}
-        ref={pictureRef}
-      />
-
+      <img src={game.rounds[questionNumber].picture} alt='' className={`quiz-picture quiz-picture--${pictureState}`} />
       <div className='quiz-data'>
         <p className='quiz-data__score'>
           Score: <span>{game.score}/30</span>
@@ -160,14 +131,22 @@ export default function QuizGame({ game, setHasFinished }) {
         )}
       </div>
 
-      <div className='quiz-options' ref={quizOptionsRef}>
-        {game.rounds[questionNumber].answers.map((answer, index) => {
+      <div className='quiz-options'>
+        {game.rounds[questionNumber].answers.map((answer) => {
           return (
             <Button
               key={answer.id}
-              className={`capital ${buttonsState[index].className}`}
-              onClick={(e) => endRound(e, answer.id)}
-              disabled={buttonsState[index].disabled}
+              className={`capital ${
+                clickedButton
+                  ? clickedButton === answer.id
+                    ? isAnswerRight
+                      ? 'button--success'
+                      : 'button--red'
+                    : 'button--disabled'
+                  : 'button--yellow'
+              }`}
+              onClick={() => endRound(answer.id)}
+              disabled={clickedButton}
             >
               {answer.value.replace(/-/g, ' ')}
             </Button>
