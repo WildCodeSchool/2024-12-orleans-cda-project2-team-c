@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import Badge from './badge-type';
 import Button from './button';
@@ -16,7 +16,7 @@ export default function QuizGame({ game, setHasFinished }) {
 
   // timer managment **************************************************
   useEffect(() => {
-    var timerInterval;
+    let timerInterval;
     if (timer === 0) {
       endRound();
     } else if (timerIsRunning) {
@@ -31,7 +31,7 @@ export default function QuizGame({ game, setHasFinished }) {
   }, [timerIsRunning, timer]);
 
   // functions **************************************************
-  function endRound(e = null, id = null) {
+  function endRound(id = null) {
     setTimerIsRunning(false);
 
     setClickedButton(id);
@@ -133,7 +133,7 @@ export default function QuizGame({ game, setHasFinished }) {
       </div>
 
       <div className='quiz-options'>
-        {game.rounds[questionNumber].answers.map((answer, index) => {
+        {game.rounds[questionNumber].answers.map((answer) => {
           return (
             <Button
               key={answer.id}
@@ -146,7 +146,7 @@ export default function QuizGame({ game, setHasFinished }) {
                     : 'button--disabled'
                   : 'button--yellow'
               }`}
-              onClick={(e) => endRound(e, answer.id)}
+              onClick={() => endRound(answer.id)}
               disabled={clickedButton}
             >
               {answer.value.replace(/-/g, ' ')}
