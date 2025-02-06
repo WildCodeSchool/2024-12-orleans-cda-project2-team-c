@@ -3,23 +3,27 @@ import { useEffect, useState } from 'react';
 import Badge from './badge-type';
 import Button from './button';
 
-export default function QuizGame({ game }) {
+export default function QuizGame({ game, setHasFinished }) {
   const [questionNumber, setQuestionNumber] = useState(0);
   const [timer, setTimer] = useState(3000);
   const [timerIsRunning, setTimerIsRunning] = useState(true);
   const [usedHints, setUsedHints] = useState([false, false]);
   const [areTypesVisible, setAreTypesVisible] = useState(false);
-  const [isPictureBlurred, setIsPictureBlurred] = useState(false);
+  const [pictureState, setPictureState] = useState('hidden');
+  const [isNextButtonVisible, setIsNextButtonVisible] = useState(false);
+  const [clickedButton, setClickedButton] = useState(null);
+  const isAnswerRight = clickedButton && game.rounds[questionNumber].checkAnswer(clickedButton);
 
   // timer managment **************************************************
   useEffect(() => {
-    const timerInterval = setInterval(() => {
-      if (timer === 0) {
-        endRound();
-      } else if (timerIsRunning) {
+    let timerInterval;
+    if (timer === 0) {
+      endRound();
+    } else if (timerIsRunning) {
+      timerInterval = setInterval(() => {
         setTimer(timer - 1000);
-      }
-    }, 1000);
+      }, 1000);
+    }
 
     return () => {
       clearInterval(timerInterval);
@@ -27,33 +31,36 @@ export default function QuizGame({ game }) {
   }, [timerIsRunning, timer]);
 
   // functions **************************************************
-  function endRound() {
-    // couper timer
+  function endRound(id = null) {
     setTimerIsRunning(false);
 
-    // vérifier réponse
+    setClickedButton(id);
 
-    // mettre à jour le visuel
-    // // mettre à jour la couleur des boutons et afficher le bouton question suivante
+    if (id && game.rounds[questionNumber].checkAnswer(id)) {
+      setPictureState('');
+      game.updateScore(game.rounds[questionNumber]);
+    }
 
-    // vérifier numéro du tour, sur dernier tour, endGame, sinon nextROund
     if (questionNumber < 9) {
-      nextRound();
+      setIsNextButtonVisible(true);
     } else {
       endGame();
     }
   }
 
   function nextRound() {
-    //
+    setQuestionNumber(questionNumber + 1);
+    setPictureState('hidden');
+    setIsNextButtonVisible(false);
+    setTimerIsRunning(true);
+    setAreTypesVisible(false);
+    setUsedHints([false, false]);
+    setTimer(15000);
+    setClickedButton(null);
   }
 
   function endGame() {
-    //
-  }
-
-  function handleClickPokemonBtn(isValid) {
-    endRound();
+    setHasFinished(true);
   }
 
   function handleClickHintBtn(index) {
@@ -74,7 +81,7 @@ export default function QuizGame({ game }) {
   }
 
   function revealBlurredPicture() {
-    setIsPictureBlurred(true);
+    setPictureState('blurred');
   }
 
   // markup **************************************************
@@ -109,32 +116,39 @@ export default function QuizGame({ game }) {
         </Button>
       </article>
 
-      <img
-        src={game.rounds[questionNumber].picture}
-        alt=''
-        className={`quiz-picture ${isPictureBlurred ? 'quiz-picture--blurred' : 'quiz-picture--hidden'}`}
-      />
-
+      <img src={game.rounds[questionNumber].picture} alt='' className={`quiz-picture quiz-picture--${pictureState}`} />
       <div className='quiz-data'>
         <p className='quiz-data__score'>
           Score: <span>{game.score}/30</span>
         </p>
-        <p className='quiz-data__timer'>{`00:${
+        <p className={`quiz-data__timer ${timer / 1000 < 6 ? 'quiz-data__timer--danger' : ''}`}>{`00:${
           (timer / 1000).toString().length === 1 ? '0' + timer / 1000 : timer / 1000
         }`}</p>
+        {isNextButtonVisible && (
+          <Button className='button-yellow' onClick={nextRound}>
+            Next
+          </Button>
+        )}
       </div>
 
       <div className='quiz-options'>
         {game.rounds[questionNumber].answers.map((answer) => {
           return (
             <Button
-              className='button--yellow'
               key={answer.id}
-              onClick={() => {
-                handleClickPokemonBtn(answer.isValid);
-              }}
+              className={`capital ${
+                clickedButton
+                  ? clickedButton === answer.id
+                    ? isAnswerRight
+                      ? 'button--success'
+                      : 'button--red'
+                    : 'button--disabled'
+                  : 'button--yellow'
+              }`}
+              onClick={() => endRound(answer.id)}
+              disabled={clickedButton}
             >
-              {answer.value}
+              {answer.value.replace(/-/g, ' ')}
             </Button>
           );
         })}

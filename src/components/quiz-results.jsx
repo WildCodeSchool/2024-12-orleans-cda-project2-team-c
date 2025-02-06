@@ -6,27 +6,27 @@ export default function QuizResults({ game }) {
   return (
     <section className='quiz-section quiz-section--result'>
       <h1>Results !</h1>
-      <p className={`score ${game.score > 6 ? 'score-green' : game.score < 4 ? 'score-red' : 'score-orange'}`}>
-        {game.score}
+      <p className={`score ${game.score > 20 ? 'score-green' : game.score < 10 ? 'score-red' : 'score-orange'}`}>
+        {game.score}/30
       </p>
-      <Button link href={'/pokelist'} className={'button--yellow'}>
+      <Button link={true} href={'/quiz'} className={'button--yellow'}>
         {'New game'}
       </Button>
       <div className='results-container'>
         {game.rounds.map((round, index) => (
           <div className='result-item' key={index}>
-            <div className='result-item--img'>
+            <div className={`result-item--img ${round.isValid ? 'right-answer' : 'wrong-answer'}`}>
               <img
                 src={round.picture}
                 alt={round.name}
-                className={`pokemon-img ${round.isValid ? 'right-answer' : 'wrong-answer'}`}
+                className={`pokemon-img ${round.isValid ? '' : 'pokemon-img--disabled'}`}
               />
               <img src={round.isValid ? right : wrong} alt='' className='answer-icon' />
             </div>
             {round.isValid ? (
-              <p className='pokemon-name'>
-                {round.name}
-                <span className='pokemon-id'> {round.id}</span>
+              <p className='pokemon-name capital'>
+                {round.name.replace(/-/g, ' ')}
+                <span className='pokemon-id'> N°{round.id}</span>
               </p>
             ) : (
               <p className='pokemon-name'>???</p>

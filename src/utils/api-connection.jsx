@@ -1,7 +1,7 @@
 export default {
   baseUrl: 'https://pokeapi.co/api/v2/',
 
-  getOnePokemon: async function (id) {
+  getOnePokemonById: async function (id) {
     const resource = 'pokemon';
 
     try {

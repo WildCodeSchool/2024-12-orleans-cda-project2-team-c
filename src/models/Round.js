@@ -30,4 +30,9 @@ export default class Round {
   setPenalty() {
     this.penalty++;
   }
+
+  checkAnswer(id) {
+    this.isValid = this.answers.find((answer) => answer.id === id).isValid;
+    return this.isValid;
+  }
 }
