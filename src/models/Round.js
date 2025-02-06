@@ -32,7 +32,7 @@ export default class Round {
   }
 
   checkAnswer(id) {
-    this.isValid = this.answers.filter((answer) => answer.id === id)[0].isValid;
+    this.isValid = this.answers.find((answer) => answer.id === id).isValid;
     return this.isValid;
   }
 }
