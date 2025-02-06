@@ -54,7 +54,6 @@ export default function QuizGame({ game, setHasFinished }) {
     setIsNextButtonVisible(false);
     setTimerIsRunning(true);
     setAreTypesVisible(false);
-    setPictureState('hidden');
     setUsedHints([false, false]);
     setTimer(15000);
     setClickedButton(null);
