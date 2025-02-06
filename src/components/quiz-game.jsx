@@ -5,7 +5,7 @@ import Button from './button';
 
 export default function QuizGame({ game, setHasFinished }) {
   const [questionNumber, setQuestionNumber] = useState(0);
-  const [timer, setTimer] = useState(15000);
+  const [timer, setTimer] = useState(3000);
   const [timerIsRunning, setTimerIsRunning] = useState(true);
   const [usedHints, setUsedHints] = useState([false, false]);
   const [areTypesVisible, setAreTypesVisible] = useState(false);
@@ -39,7 +39,6 @@ export default function QuizGame({ game, setHasFinished }) {
   // functions **************************************************
   function endRound(e = null, id = null) {
     setTimerIsRunning(false);
-
     setButtonsState((prevState) =>
       prevState.map((btn, index) => {
         const isClicked = id === game.rounds[questionNumber].answers[index].id;

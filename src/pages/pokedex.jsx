@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { useLoaderData } from 'react-router-dom';
 
 import Button from '../components/button';
 import ButtonUp from '../components/button-up';
@@ -7,23 +8,20 @@ import SearchSection from '../components/search-section';
 import '../css/pokemon-list.css';
 
 export default function Pokedex() {
-  const [pokemonResult, setPokemon] = useState(0);
-  useEffect(() => {
-    const stockPokemon = localStorage.getItem('result');
-    if (stockPokemon) {
-      const pokemons = JSON.parse(stockPokemon);
-      setPokemon(pokemons);
-    }
-  }, []);
+  // const [pokemonResult, setPokemon] = useState(0);
+  const myPokemons = useLoaderData();
+  console.log(myPokemons);
+
+  // const sortAscending = (myPokemons) => array.sort((a, b) => a - b);
 
   return (
     <>
       <section className='pokemon-section'>
         <SearchSection title='Pokédex' />
-        {pokemonResult.length > 0 ? (
+        {myPokemons.length > 0 ? (
           <ul className='pokemon-list'>
-            {pokemonResult.map((pokemon) => {
-              return <PokemonCard key={pokemon.name} pokemon={pokemon} />;
+            {myPokemons.map((pokemon) => {
+              return <PokemonCard key={pokemon.id} pokemon={pokemon} />;
             })}
           </ul>
         ) : (
@@ -38,7 +36,7 @@ export default function Pokedex() {
             </Button>
           </div>
         )}
-        {pokemonResult.length > 0 ? (
+        {myPokemons.length > 0 ? (
           <Button className='button--red center' link={true}>
             Play
           </Button>

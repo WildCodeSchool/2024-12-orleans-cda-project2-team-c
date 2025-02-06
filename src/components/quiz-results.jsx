@@ -3,6 +3,15 @@ import wrong from '../assets/icons/cross-red.png';
 import Button from './button';
 
 export default function QuizResults({ game }) {
+  const storedPokedex = JSON.parse(localStorage.getItem('result')) || [];
+  const myPokedex = new Set(storedPokedex);
+  game.rounds.forEach((round) => {
+    if (round.isValid) {
+      myPokedex.add(round.id);
+    }
+  });
+  localStorage.setItem('result', JSON.stringify([...myPokedex]));
+
   return (
     <section className='quiz-section quiz-section--result'>
       <h1>Results !</h1>

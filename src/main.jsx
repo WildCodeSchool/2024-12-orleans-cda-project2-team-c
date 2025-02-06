@@ -41,6 +41,11 @@ const router = createBrowserRouter([
       {
         path: 'pokedex',
         element: <Pokedex />,
+        loader: () => {
+          const stockPokemon = localStorage.getItem('result');
+          const myPokemons = JSON.parse(stockPokemon).sort((a, b) => a - b);
+          return Promise.all(myPokemons.map((myPokemon) => ApiConnection.getOnePokemonById(myPokemon)));
+        },
       },
       {
         path: 'pokemon/:id',
@@ -48,9 +53,9 @@ const router = createBrowserRouter([
         loader: (route) => {
           const id = parseInt(route.params.id);
           return Promise.all([
-            ApiConnection.getOnePokemon(route.params.id),
-            ApiConnection.getOnePokemon((id % 1025) + 1),
-            ApiConnection.getOnePokemon((id - 1 + 1025) % 1025 || 1025),
+            ApiConnection.getOnePokemonById(route.params.id),
+            ApiConnection.getOnePokemonById((id % 1025) + 1),
+            ApiConnection.getOnePokemonById((id - 1 + 1025) % 1025 || 1025),
           ]);
         },
       },
