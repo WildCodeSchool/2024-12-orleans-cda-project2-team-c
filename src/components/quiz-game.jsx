@@ -5,7 +5,7 @@ import Button from './button';
 
 export default function QuizGame({ game, setHasFinished }) {
   const [questionNumber, setQuestionNumber] = useState(0);
-  const [timer, setTimer] = useState(3000);
+  const [timer, setTimer] = useState(15000);
   const [timerIsRunning, setTimerIsRunning] = useState(true);
   const [usedHints, setUsedHints] = useState([false, false]);
   const [areTypesVisible, setAreTypesVisible] = useState(false);
