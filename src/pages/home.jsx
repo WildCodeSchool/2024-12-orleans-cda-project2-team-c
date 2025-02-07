@@ -5,7 +5,7 @@ export default function Home() {
   return (
     <>
       <Carousel />
-      <Button link={true} href={'#'} className={'button  button--red button--center'}>
+      <Button link={true} href='/pokelist' className={'button  button--red button--center'}>
         Explore all !
       </Button>
     </>
