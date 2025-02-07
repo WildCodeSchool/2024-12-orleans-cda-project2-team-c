@@ -1,10 +1,13 @@
 import { useEffect, useState } from 'react';
+import { Links } from 'react-router-dom';
 
 import '../css/search-section.css';
+import pokemonNames from '../utils/pokemon-names';
 
 export default function SearchSection({ title }) {
   const [searchBy, setSearchBy] = useState('name');
   const [types, setTypes] = useState([]);
+  const [searchValue, setSearchValue] = useState('');
 
   const handelRadio = (event) => {
     setSearchBy(event.target.value);
@@ -68,7 +71,33 @@ export default function SearchSection({ title }) {
             ))}
           </select>
         ) : (
-          <input className='search-by-name-inupt' type='text' placeholder='Enter a Pokémon name' />
+          <div className='poke-position'>
+            <input
+              className='search-by-name-inupt'
+              type='text'
+              placeholder='Enter a Pokémon name'
+              value={searchValue}
+              onChange={(e) => setSearchValue(e.target.value)}
+            />
+            <ul className='poke-list'>
+              {searchValue &&
+                pokemonNames
+                  .filter((name) => name.match(new RegExp(`^${searchValue}`, 'i')))
+                  .map((name) => {
+                    return (
+                      <Links
+                        href={'/pokemon/' + name}
+                        key={name}
+                        name={name}
+                        className='poke-name capital'
+                        onClick={() => setSearchValue(name)}
+                      >
+                        {name}{' '}
+                      </Links>
+                    );
+                  })}
+            </ul>
+          </div>
         )}
       </form>
     </div>
