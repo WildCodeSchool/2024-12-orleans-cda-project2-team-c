@@ -2,7 +2,6 @@ import '../css/pokemon-card.css';
 import Badge from './badge-type';
 
 export default function PokemonCard({ pokemon }) {
-  console.log(pokemon);
 
   return (
     <li className='pokemon-card'>
