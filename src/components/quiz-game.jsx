@@ -42,8 +42,6 @@ export default function QuizGame({ game, setHasFinished }) {
     }
 
     if (questionNumber < 9) {
-      console.log(questionNumber);
-
       setButtonText('Next');
     } else {
       setButtonText('Finish');
@@ -127,12 +125,12 @@ export default function QuizGame({ game, setHasFinished }) {
           (timer / 1000).toString().length === 1 ? '0' + timer / 1000 : timer / 1000
         }`}</p>
         {buttonText === 'Next' && (
-          <Button className='button-yellow' onClick={nextRound}>
+          <Button className='button--yellow' onClick={nextRound}>
             {buttonText}
           </Button>
         )}
         {buttonText === 'Finish' && (
-          <Button className='button-yellow' onClick={endGame}>
+          <Button className='button--yellow' onClick={endGame}>
             {buttonText}
           </Button>
         )}

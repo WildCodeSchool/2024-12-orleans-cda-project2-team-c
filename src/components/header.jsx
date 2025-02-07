@@ -10,6 +10,8 @@ export default function Header() {
   const [isActive, setIsActive] = useState(false);
 
   function openClick() {
+    console.log(isActive);
+
     setIsActive(() => !isActive);
   }
   return (
@@ -29,7 +31,11 @@ export default function Header() {
         <img src={isActive ? close : menuIcon} alt='' aria-hidden='true' />
       </button>
 
-      <nav className={`main-navigation ${isActive ? 'main-navigation--active' : ''} `} id='main-navigation'>
+      <nav
+        className={`main-navigation ${isActive ? 'main-navigation--active' : ''} `}
+        id='main-navigation'
+        onClick={openClick}
+      >
         <Button link={true} href='/pokelist' className='button--yellow'>
           PokéList
         </Button>
