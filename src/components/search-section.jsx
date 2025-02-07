@@ -92,7 +92,7 @@ export default function SearchSection({ title }) {
                         className='poke-name capital'
                         onClick={() => setSearchValue(name)}
                       >
-                        {name}{' '}
+                        {name}
                       </Links>
                     );
                   })}
