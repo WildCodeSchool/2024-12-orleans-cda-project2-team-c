@@ -7,7 +7,10 @@ import SearchSection from '../components/search-section';
 import '../css/pokemon-list.css';
 
 export default function Pokedex() {
-  const myPokemons = useLoaderData();
+  let myPokemons = useLoaderData();
+  if (!myPokemons) {
+    myPokemons = [];
+  }
 
   return (
     <>
@@ -32,7 +35,7 @@ export default function Pokedex() {
           </div>
         )}
 
-        {myPokemons.length > 0 ? (
+        {myPokemons && myPokemons.length > 0 ? (
           <Button className='button--red center' link={true} href='/quiz'>
             Play
           </Button>
