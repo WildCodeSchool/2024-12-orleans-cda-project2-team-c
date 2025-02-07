@@ -5,7 +5,6 @@ import PrevBtn from '../assets/icons/chevron-left-blue.png';
 import NextBtn from '../assets/icons/chevron-right-blue.png';
 import '../css/carousel.css';
 import Badge from './badge-type';
-import Button from './button';
 import Stats from './stats';
 
 export default function Carousel() {
@@ -85,10 +84,6 @@ export default function Carousel() {
           <img src={NextBtn} alt='Next' className='img-btn' />
         </button>
       </div>
-
-      <Button link={true} href={'#'} className={'button  button--red'}>
-        Explore all !
-      </Button>
     </>
   );
 }

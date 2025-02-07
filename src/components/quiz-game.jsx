@@ -10,8 +10,8 @@ export default function QuizGame({ game, setHasFinished }) {
   const [usedHints, setUsedHints] = useState([false, false]);
   const [areTypesVisible, setAreTypesVisible] = useState(false);
   const [pictureState, setPictureState] = useState('hidden');
-  const [isNextButtonVisible, setIsNextButtonVisible] = useState(false);
   const [clickedButton, setClickedButton] = useState(null);
+  const [buttonText, setButtonText] = useState(null);
   const isAnswerRight = clickedButton && game.rounds[questionNumber].checkAnswer(clickedButton);
 
   // timer managment **************************************************
@@ -42,21 +42,21 @@ export default function QuizGame({ game, setHasFinished }) {
     }
 
     if (questionNumber < 9) {
-      setIsNextButtonVisible(true);
+      setButtonText('Next');
     } else {
-      endGame();
+      setButtonText('Finish');
     }
   }
 
   function nextRound() {
     setQuestionNumber(questionNumber + 1);
     setPictureState('hidden');
-    setIsNextButtonVisible(false);
     setTimerIsRunning(true);
     setAreTypesVisible(false);
     setUsedHints([false, false]);
     setTimer(15000);
     setClickedButton(null);
+    setButtonText(null);
   }
 
   function endGame() {
@@ -96,7 +96,7 @@ export default function QuizGame({ game, setHasFinished }) {
   return (
     <section className='quiz-section quiz-section--game'>
       <h1>
-        <span>{questionNumber}/10</span> - Which pokémon is it ?
+        <span>{questionNumber + 1}/10</span> - Which pokémon is it ?
       </h1>
 
       {/* hints */}
@@ -132,9 +132,14 @@ export default function QuizGame({ game, setHasFinished }) {
         <p className={`quiz-data__timer ${timer / 1000 < 6 ? 'quiz-data__timer--danger' : ''}`}>{`00:${
           (timer / 1000).toString().length === 1 ? '0' + timer / 1000 : timer / 1000
         }`}</p>
-        {isNextButtonVisible && (
-          <Button className='button-yellow' onClick={nextRound}>
-            Next
+        {buttonText === 'Next' && (
+          <Button className='button--yellow' onClick={nextRound}>
+            {buttonText}
+          </Button>
+        )}
+        {buttonText === 'Finish' && (
+          <Button className='button--yellow' onClick={endGame}>
+            {buttonText}
           </Button>
         )}
       </div>

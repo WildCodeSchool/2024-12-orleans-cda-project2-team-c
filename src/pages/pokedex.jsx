@@ -26,13 +26,14 @@ export default function Pokedex() {
               <br />
               Go and try to find some in the quiz !
             </p>
-            <Button className='button--red center' link={true}>
+            <Button className='button--red center' link={true} href='/quiz'>
               Play
             </Button>
           </div>
         )}
+
         {myPokemons.length > 0 ? (
-          <Button className='button--red center' link={true}>
+          <Button className='button--red center' link={true} href='/quiz'>
             Play
           </Button>
         ) : (

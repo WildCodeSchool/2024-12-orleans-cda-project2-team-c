@@ -64,7 +64,7 @@ body {
   grid-template-rows: auto 1fr auto;
 }
 main {
-  padding: 108px 16px 64px;
+  padding: 64px 16px 64px;
 }
 
 h1,

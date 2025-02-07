@@ -5,6 +5,7 @@ footer {
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-direction: column;
 }
 
 .footer__logo {
@@ -36,4 +37,17 @@ footer {
 
 .footer__network-link img {
   width: 100%;
+}
+
+@media screen and (max-width: 640px) {
+  footer {
+    flex-direction: column;
+    gap: 16px;
+    padding: 32px;
+  }
+
+  .footer__network-container {
+    position: static;
+    transform: none;
+  }
 }
