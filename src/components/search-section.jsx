@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Links } from 'react-router-dom';
+import { Link, Links } from 'react-router-dom';
 
 import '../css/search-section.css';
 import pokemonNames from '../utils/pokemon-names';
@@ -8,6 +8,7 @@ export default function SearchSection({ title }) {
   const [searchBy, setSearchBy] = useState('name');
   const [types, setTypes] = useState([]);
   const [searchValue, setSearchValue] = useState('');
+  const [clickName, setClickName] = useState('');
 
   const handelRadio = (event) => {
     setSearchBy(event.target.value);
@@ -85,15 +86,16 @@ export default function SearchSection({ title }) {
                   .filter((name) => name.match(new RegExp(`^${searchValue}`, 'i')))
                   .map((name) => {
                     return (
-                      <Links
-                        href={'/pokemon/' + name}
+                      <Link
+                        to={'/pokemon/' + clickName}
                         key={name}
                         name={name}
                         className='poke-name capital'
-                        onClick={() => setSearchValue(name)}
+                        value={clickName}
+                        onClick={() => setClickName(name)}
                       >
                         {name}
-                      </Links>
+                      </Link>
                     );
                   })}
             </ul>
