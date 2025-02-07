@@ -69,6 +69,15 @@ export default function QuizGame({ game, setHasFinished }) {
       }
     });
     localStorage.setItem('result', JSON.stringify([...myPokedex]));
+
+    setPictureState('hidden');
+    setTimerIsRunning(true);
+    setAreTypesVisible(false);
+    setUsedHints([false, false]);
+    setTimer(15000);
+    setClickedButton(null);
+    setButtonText(null);
+    setQuestionNumber(0);
   }
 
   function handleClickHintBtn(index) {
@@ -93,6 +102,8 @@ export default function QuizGame({ game, setHasFinished }) {
   }
 
   // markup **************************************************
+  console.log(game);
+
   return (
     <section className='quiz-section quiz-section--game'>
       <h1>

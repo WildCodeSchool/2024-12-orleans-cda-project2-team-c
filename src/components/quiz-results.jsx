@@ -1,15 +1,23 @@
 import right from '../assets/icons/check-green.png';
 import wrong from '../assets/icons/cross-red.png';
+import Game from '../models/Game';
+import ApiConnection from '../utils/api-connection';
 import Button from './button';
 
-export default function QuizResults({ game }) {
+export default function QuizResults({ game, setHasFinished, setGame }) {
   return (
     <section className='quiz-section quiz-section--result'>
       <h1>Results !</h1>
       <p className={`score ${game.score > 20 ? 'score-green' : game.score < 10 ? 'score-red' : 'score-orange'}`}>
         {game.score}/30
       </p>
-      <Button link={true} href={'/quiz'} className={'button--yellow'}>
+      <Button
+        className={'button--yellow'}
+        onClick={async () => {
+          setHasFinished(false);
+          setGame(new Game(await ApiConnection.getQuizPokemons()));
+        }}
+      >
         {'New game'}
       </Button>
       <div className='results-container'>
