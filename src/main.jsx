@@ -43,8 +43,10 @@ const router = createBrowserRouter([
         element: <Pokedex />,
         loader: () => {
           const stockPokemon = localStorage.getItem('result');
-          const myPokemons = JSON.parse(stockPokemon).sort((a, b) => a - b);
-          return Promise.all(myPokemons.map((myPokemon) => ApiConnection.getOnePokemonById(myPokemon)));
+          if (stockPokemon) {
+            const myPokemons = JSON.parse(stockPokemon).sort((a, b) => a - b);
+            return Promise.all(myPokemons.map((myPokemon) => ApiConnection.getOnePokemonById(myPokemon)));
+          }
         },
       },
       {

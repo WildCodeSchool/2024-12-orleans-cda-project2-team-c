@@ -13,7 +13,7 @@ export default function PokemonList() {
   const loaderData = useLoaderData();
   const [pokemons, setPokemons] = useState(loaderData);
 
-  const [page, setPage] = useState(1);
+  const [page, setPage] = useState(2);
 
   async function getPokemons(page) {
     const newPage = await ApiConnection.getPokemonPage(page);
