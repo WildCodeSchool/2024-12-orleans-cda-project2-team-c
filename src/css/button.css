@@ -13,11 +13,11 @@
     filter 0.2s ease-out;
 }
 
-.button:active {
+.button::not(.button--disabled):active {
   box-shadow: inset 0px 2px 4px rgba(0, 0, 0, 0.25);
 }
 
-.button:hover {
+.button::not(.button--disabled):hover {
   filter: brightness(0.9);
 }
 
@@ -34,6 +34,11 @@
 .button--success {
   color: var(--black);
   background: var(--success);
+}
+
+.button--disabled {
+  color: var(--white);
+  background: var(--text-hint);
 }
 
 .button--center {
