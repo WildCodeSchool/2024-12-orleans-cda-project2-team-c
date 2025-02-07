@@ -102,7 +102,6 @@ export default function QuizGame({ game, setHasFinished }) {
   }
 
   // markup **************************************************
-
   return (
     <section className='quiz-section quiz-section--game'>
       <h1>
