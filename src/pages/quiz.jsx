@@ -17,7 +17,7 @@ export default function Quiz() {
 
   return hasStarted ? (
     hasFinished ? (
-      <QuizResults game={game} />
+      <QuizResults game={game} setHasFinished={setHasFinished} setGame={setGame} />
     ) : (
       <QuizGame game={game} setHasFinished={setHasFinished} />
     )
