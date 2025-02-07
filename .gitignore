@@ -14,6 +14,7 @@ dist-ssr
 prettier.config.json
 prettier.config-save.json
 mock-pokemon.jsx
+mock-pokemons.jsx
 
 # Editor directories and files
 .vscode/*
