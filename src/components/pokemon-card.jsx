@@ -2,6 +2,8 @@ import '../css/pokemon-card.css';
 import Badge from './badge-type';
 
 export default function PokemonCard({ pokemon }) {
+  console.log(pokemon);
+
   return (
     <li className='pokemon-card'>
       <div className='pokemon-card__picture'>
@@ -10,7 +12,12 @@ export default function PokemonCard({ pokemon }) {
 
       <div className='pokemon-card__content'>
         <div className='pokemon-card__title-wrapper'>
-          <p className='pokemon-card__id'>N° {'0'.repeat(3 - pokemon.id.toString().length) + pokemon.id}</p>
+          <p className='pokemon-card__id'>
+            N°{' '}
+            {pokemon.id.toString().length === 4
+              ? pokemon.id
+              : '0'.repeat(3 - pokemon.id.toString().length) + pokemon.id}
+          </p>
           <h2 className='pokemon-card__title'>{pokemon.name}</h2>
         </div>
         <div className='pokemon-card__types-container'>
