@@ -81,22 +81,18 @@
   margin-top: 32px;
 }
 
-.carousel-container .button--red {
-  margin: 0 auto;
-  margin-top: 48px;
-  margin-bottom: 64px;
-}
-
 .type {
   display: flex;
   flex-direction: row;
   gap: 8px;
   margin-bottom: 48px;
 }
+
 .carousel-container {
   max-width: 1074px;
   margin: 0 auto;
   position: relative;
+  margin-bottom: 48px;
 }
 .prev-btn,
 .next-btn {
