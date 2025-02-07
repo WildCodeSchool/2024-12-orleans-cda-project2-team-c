@@ -10,8 +10,6 @@ export default function Header() {
   const [isActive, setIsActive] = useState(false);
 
   function openClick() {
-    console.log(isActive);
-
     setIsActive(() => !isActive);
   }
   return (
