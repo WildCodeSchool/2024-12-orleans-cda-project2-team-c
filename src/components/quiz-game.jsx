@@ -46,15 +46,6 @@ export default function QuizGame({ game, setHasFinished }) {
     } else {
       endGame();
     }
-
-    const storedPokedex = JSON.parse(localStorage.getItem('result')) || [];
-    const myPokedex = new Set(storedPokedex);
-    game.rounds.forEach((round) => {
-      if (round.isValid) {
-        myPokedex.add(round.id);
-      }
-    });
-    localStorage.setItem('result', JSON.stringify([...myPokedex]));
   }
 
   function nextRound() {
@@ -70,6 +61,14 @@ export default function QuizGame({ game, setHasFinished }) {
 
   function endGame() {
     setHasFinished(true);
+    const storedPokedex = JSON.parse(localStorage.getItem('result')) || [];
+    const myPokedex = new Set(storedPokedex);
+    game.rounds.forEach((round) => {
+      if (round.isValid) {
+        myPokedex.add(round.id);
+      }
+    });
+    localStorage.setItem('result', JSON.stringify([...myPokedex]));
   }
 
   function handleClickHintBtn(index) {
