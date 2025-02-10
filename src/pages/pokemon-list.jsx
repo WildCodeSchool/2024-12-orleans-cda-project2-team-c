@@ -30,7 +30,7 @@ export default function PokemonList() {
       <section className='pokemon-section'>
         <SearchSection title='Pokélist' />
 
-        <ul className='pokemon-list'>
+        <div className='pokemon-list'>
           {pokemons.length ? (
             pokemons.map((pokemon) => {
               return <PokemonCard key={pokemon.name} pokemon={pokemon} />;
@@ -38,7 +38,7 @@ export default function PokemonList() {
           ) : (
             <Loader />
           )}
-        </ul>
+        </div>
 
         <Button onClick={handleClickMoreBtn} className='button--red center'>
           more
