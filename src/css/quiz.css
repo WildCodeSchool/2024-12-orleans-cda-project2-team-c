@@ -1,4 +1,8 @@
 /* global */
+.quiz-section img {
+  pointer-events: none;
+}
+
 .quiz-section {
   background: var(--grey);
   margin-inline: auto;
