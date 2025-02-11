@@ -7,6 +7,11 @@
   box-shadow: 0 2px 7px rgba(0, 0, 0, 0.25);
   padding-block: 8px;
   align-items: center;
+  cursor: pointer;
+}
+
+.pokemon-card:hover {
+  transform: scale(1.03);
 }
 
 .pokemon-card__picture {
