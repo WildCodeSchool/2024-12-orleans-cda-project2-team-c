@@ -159,16 +159,18 @@ export default function QuizGame({ game, setHasFinished }) {
             <Button
               key={answer.id}
               className={`capital ${
-                clickedButton
-                  ? clickedButton === answer.id
-                    ? isAnswerRight
-                      ? 'button--success'
-                      : 'button--red'
-                    : 'button--disabled'
-                  : 'button--yellow'
+                timerIsRunning
+                  ? clickedButton
+                    ? clickedButton === answer.id
+                      ? isAnswerRight
+                        ? 'button--success'
+                        : 'button--red'
+                      : 'button--disabled'
+                    : 'button--yellow'
+                  : 'button--disabled'
               }`}
               onClick={() => endRound(answer.id)}
-              disabled={clickedButton}
+              disabled={clickedButton || !timerIsRunning}
             >
               {answer.value.replace(/-/g, ' ')}
             </Button>
