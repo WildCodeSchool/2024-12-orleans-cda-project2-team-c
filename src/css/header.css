@@ -59,6 +59,7 @@ header {
 
   .main-navigation--active {
     transform: translateY(0);
+    z-index: 100;
   }
 
   .mobile-navigation__toggler {
