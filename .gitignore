@@ -13,7 +13,7 @@ dist-ssr
 *.local
 prettier.config.json
 prettier.config-save.json
-mock*
+
 
 # Editor directories and files
 .vscode/*

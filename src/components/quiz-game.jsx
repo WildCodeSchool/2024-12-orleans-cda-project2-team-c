@@ -105,7 +105,7 @@ export default function QuizGame({ game, setHasFinished }) {
   return (
     <section className='quiz-section quiz-section--game'>
       <h1>
-        <span>{questionNumber + 1}/10</span> - Which pokémon is it ?
+        <span>{questionNumber + 1}/10</span> Which pokémon is it ?
       </h1>
 
       {/* hints */}

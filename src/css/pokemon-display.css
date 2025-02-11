@@ -143,6 +143,9 @@
   display: none;
   margin-top: 16px;
 }
+.left-top > h1 {
+  text-align: left;
+}
 
 @media screen and (max-width: 1075px) {
   .pokemon-display {
