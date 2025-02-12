@@ -1,5 +1,6 @@
 import right from '../assets/icons/check-green.png';
 import wrong from '../assets/icons/cross-red.png';
+import newBadge from '../assets/icons/new-gold-badge.png';
 import Game from '../models/Game';
 import ApiConnection from '../utils/api-connection';
 import Button from './button';
@@ -24,6 +25,7 @@ export default function QuizResults({ game, setHasFinished, setGame }) {
         {game.rounds.map((round, index) => (
           <div className='result-item' key={index}>
             <div className={`result-item--img ${round.isValid ? 'right-answer' : 'wrong-answer'}`}>
+              {round.new ? <img className='new-badge' src={newBadge} alt='badge new pokemon' /> : ''}
               <img
                 src={round.picture}
                 alt={round.name}
