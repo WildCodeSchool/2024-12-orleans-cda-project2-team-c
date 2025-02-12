@@ -11,7 +11,7 @@ export default function QuizStart({ setHasStarted }) {
       </div>
       <p>
         Find out to which Pokémon the figure belongs to and try to make a perfect score ! Every Pokémon you discover
-        will be added to your personal Pokédex! Go Catch’ em all !
+        will be added to your personal Pokédex! You have 15 seconds to answer and can use 2 hints! Go Catch’ em all !
       </p>
       <Button onClick={() => setHasStarted(true)} className='button--red'>
         Start !
