@@ -18,6 +18,27 @@ export default {
     }
   },
 
+  getPokemon: async function (param) {
+    const resource = 'pokemon';
+
+    try {
+      const response = await fetch(`${this.baseUrl}${resource}/${param}`);
+
+      if (response.ok) {
+        const data = await response.json();
+        const id = data.id;
+        const pokemons = [data];
+        pokemons.push(this.getOnePokemonById((id % 1025) + 1));
+        pokemons.push(this.getOnePokemonById((id - 1 + 1025) % 1025 || 1025));
+        return Promise.all(pokemons);
+      } else {
+        throw new Error(`error while fetching ressource from API: ${response.code}`);
+      }
+    } catch (error) {
+      return false;
+    }
+  },
+
   getPokemonPage: async function (page = 1) {
     const resource = 'pokemon';
     const offset = page * 9 - 9;

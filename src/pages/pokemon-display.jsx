@@ -28,8 +28,8 @@ const typeWeaknesses = {
 };
 
 export default function PokemonDisplay() {
-  const [pokemon, nextPokemon, prevPokemon] = useLoaderData();
   const audioRef = useRef(null);
+  const [pokemon, nextPokemon, prevPokemon] = useLoaderData();
 
   return (
     <section className='pokemon-display'>
