@@ -42,7 +42,6 @@
 }
 
 .quiz-section p {
-  /* max-width: 656px; */
   margin-inline: auto;
   margin-bottom: 16px;
 }
@@ -132,6 +131,12 @@
   flex-wrap: wrap;
   gap: 16px;
   margin: 32px;
+}
+
+.new-badge {
+  width: 40px;
+  position: absolute;
+  margin: 4px;
 }
 
 .pokemon-img {

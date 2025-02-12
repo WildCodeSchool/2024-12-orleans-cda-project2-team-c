@@ -63,8 +63,12 @@ export default function QuizGame({ game, setHasFinished }) {
     setHasFinished(true);
     const storedPokedex = JSON.parse(localStorage.getItem('result')) || [];
     const myPokedex = new Set(storedPokedex);
+
     game.rounds.forEach((round) => {
       if (round.isValid) {
+        if (!storedPokedex.includes(round.id)) {
+          round.new = true;
+        }
         myPokedex.add(round.id);
       }
     });

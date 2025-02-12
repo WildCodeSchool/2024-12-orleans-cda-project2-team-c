@@ -20,11 +20,13 @@
 
 .pokemon-card__picture img {
   width: 100%;
+  min-width: 140px;
 }
 
 .pokemon-card__content {
   padding: 16px;
   flex-shrink: 0;
+  min-width: 260px;
 }
 
 .pokemon-card__id {
@@ -34,6 +36,11 @@
 
 .pokemon-card__title-wrapper {
   margin-bottom: 16px;
+}
+
+.pokemon-card__title {
+  text-wrap: wrap;
+  width: 70%;
 }
 
 .pokemon-card__title::first-letter {
@@ -63,5 +70,9 @@
 
   .pokemon-card__title {
     margin-bottom: 0;
+  }
+
+  .pokemon-card__types-container {
+    justify-content: center;
   }
 }
