@@ -13,6 +13,11 @@ export default function QuizGame({ game, setHasFinished }) {
   const [clickedButton, setClickedButton] = useState(null);
   const [buttonText, setButtonText] = useState(null);
   const isAnswerRight = clickedButton && game.rounds[questionNumber].checkAnswer(clickedButton);
+  // const [pressedKey, setPressedKey] = useState(null);
+  const secretCode = 'pikapika';
+  const [pressedKeys, setPressedKeys] = useState([]);
+  // const pressedKeys = [];
+  // console.log(game.rounds);
 
   // timer managment **************************************************
   useEffect(() => {
@@ -24,15 +29,27 @@ export default function QuizGame({ game, setHasFinished }) {
         setTimer(timer - 1000);
       }, 1000);
     }
+    // window.addEventListener('keyup', (e) => winRound(e.key));
+    window.addEventListener(
+      'keyup',
+      (e) =>
+        setPressedKeys((actualValue) => {
+          actualValue.push(e.key);
+          return actualValue.splice(-secretCode.length - 1, pressedKeys.length - secretCode.length);
+        }),
+      console.log('in event listener', pressedKeys),
+    );
 
     return () => {
       clearInterval(timerInterval);
+      // window.removeEventListener('keyup', winRound);
     };
   }, [timerIsRunning, timer]);
 
-  // functions **************************************************
+  // game functions **************************************************
   function endRound(id = null) {
     setTimerIsRunning(false);
+    console.log(`dans endRound, id: ${id}`);
 
     setClickedButton(id);
 
@@ -104,6 +121,19 @@ export default function QuizGame({ game, setHasFinished }) {
   function revealBlurredPicture() {
     setPictureState('blurred');
   }
+
+  // cheat code(s) managment **************************************************
+  // function winRound(key) {
+  //   pressedKeys.push(key);
+  //   pressedKeys.splice(-secretCode.length - 1, pressedKeys.length - secretCode.length);
+
+  //   if (pressedKeys.join('') === secretCode) {
+  //     console.log('jtm', questionNumber);
+  //     console.log(game.rounds[questionNumber].answers.find((answer) => answer.isValid).id);
+
+  //     endRound(game.rounds[questionNumber].answers.find((answer) => answer.isValid).id);
+  //   }
+  // }
 
   // markup **************************************************
   return (

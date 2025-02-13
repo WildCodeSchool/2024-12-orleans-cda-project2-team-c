@@ -33,6 +33,9 @@ export default class Round {
   }
 
   checkAnswer(id) {
+    console.log(`dans checkAnswer, id: ${id}`);
+    console.log(this.answers);
+
     this.isValid = this.answers.find((answer) => answer.id === id).isValid;
     return this.isValid;
   }
