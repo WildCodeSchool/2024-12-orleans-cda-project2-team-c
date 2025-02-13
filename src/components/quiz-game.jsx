@@ -13,15 +13,14 @@ export default function QuizGame({ game, setHasFinished }) {
   const [clickedButton, setClickedButton] = useState(null);
   const [buttonText, setButtonText] = useState(null);
   const isAnswerRight = clickedButton && game.rounds[questionNumber].checkAnswer(clickedButton);
-  // const [pressedKey, setPressedKey] = useState(null);
-  const secretCode = 'pikapika';
-  const [pressedKeys, setPressedKeys] = useState([]);
-  // const pressedKeys = [];
-  // console.log(game.rounds);
+  const secretCode = '1026';
+  const pressedKeys = [];
 
   // timer managment **************************************************
   useEffect(() => {
     let timerInterval;
+    const controller = new AbortController();
+    const signal = controller.signal;
     if (timer === 0) {
       endRound();
     } else if (timerIsRunning) {
@@ -29,27 +28,18 @@ export default function QuizGame({ game, setHasFinished }) {
         setTimer(timer - 1000);
       }, 1000);
     }
-    // window.addEventListener('keyup', (e) => winRound(e.key));
-    window.addEventListener(
-      'keyup',
-      (e) =>
-        setPressedKeys((actualValue) => {
-          actualValue.push(e.key);
-          return actualValue.splice(-secretCode.length - 1, pressedKeys.length - secretCode.length);
-        }),
-      console.log('in event listener', pressedKeys),
-    );
+    window.addEventListener('keyup', (e) => winRound(e.key), { signal: signal });
 
     return () => {
       clearInterval(timerInterval);
       // window.removeEventListener('keyup', winRound);
+      controller.abort();
     };
   }, [timerIsRunning, timer]);
 
   // game functions **************************************************
   function endRound(id = null) {
     setTimerIsRunning(false);
-    console.log(`dans endRound, id: ${id}`);
 
     setClickedButton(id);
 
@@ -123,17 +113,14 @@ export default function QuizGame({ game, setHasFinished }) {
   }
 
   // cheat code(s) managment **************************************************
-  // function winRound(key) {
-  //   pressedKeys.push(key);
-  //   pressedKeys.splice(-secretCode.length - 1, pressedKeys.length - secretCode.length);
+  function winRound(key) {
+    pressedKeys.push(key);
+    pressedKeys.splice(-secretCode.length - 1, pressedKeys.length - secretCode.length);
 
-  //   if (pressedKeys.join('') === secretCode) {
-  //     console.log('jtm', questionNumber);
-  //     console.log(game.rounds[questionNumber].answers.find((answer) => answer.isValid).id);
-
-  //     endRound(game.rounds[questionNumber].answers.find((answer) => answer.isValid).id);
-  //   }
-  // }
+    if (pressedKeys.join('') === secretCode) {
+      endRound(game.rounds[questionNumber].answers.find((answer) => answer.isValid).id);
+    }
+  }
 
   // markup **************************************************
   return (
