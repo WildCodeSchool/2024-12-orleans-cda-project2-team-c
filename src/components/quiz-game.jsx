@@ -131,7 +131,7 @@ export default function QuizGame({ game, setHasFinished }) {
         <Button
           className={usedHints[1] ? 'button--disabled' : 'button--red'}
           onClick={() => handleClickHintBtn(1)}
-          disabled={usedHints[1]}
+          disabled={usedHints[1] || clickedButton || !timerIsRunning}
         >
           Hint 2
         </Button>
