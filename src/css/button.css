@@ -1,11 +1,11 @@
 .button {
-  width: fit-content;
   display: block;
+  width: fit-content;
   padding: 8px 32px;
+  border: none;
+  border-radius: 4px;
   font-size: var(--fz-18);
   font-weight: 400;
-  border-radius: 4px;
-  border: none;
   box-shadow: 0px 2px 7px rgba(0, 0, 0, 0.25);
   transition:
     box-shadow 0.2s ease-out,

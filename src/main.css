@@ -85,6 +85,7 @@ h6 {
 
 h1 {
   font-size: var(--fz-32);
+  font-weight: 700;
   text-align: center;
 }
 

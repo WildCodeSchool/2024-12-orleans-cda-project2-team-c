@@ -12,7 +12,7 @@ export default function Error404() {
       <section className='error-container'>
         <p className='error-404'>404</p>
         <img src={errorImg} alt='Dark Mewtwo' className='error-img' />
-        <h2>Page not found !</h2>
+        <h1>Page not found !</h1>
       </section>
     </>
   );
