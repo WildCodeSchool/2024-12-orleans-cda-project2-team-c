@@ -35,10 +35,6 @@ const router = createBrowserRouter([
         },
       },
       {
-        path: 'pokelist/:type',
-        element: <PokemonList />,
-      },
-      {
         path: 'pokedex',
         element: <Pokedex />,
         loader: () => {
