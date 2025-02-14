@@ -85,7 +85,12 @@ export default function SearchSection({ title }) {
                   .filter((name) => name.match(new RegExp(`^${searchValue}`, 'i')))
                   .map((name) => {
                     return (
-                      <Link to={'/pokemon/' + name} key={name} name={name} className='poke-name capital'>
+                      <Link
+                        to={'/pokemon/' + name.replaceAll(/\W/g, '-').replaceAll(/--/g, '-')}
+                        key={name}
+                        name={name}
+                        className='poke-name capital'
+                      >
                         {name}
                       </Link>
                     );
