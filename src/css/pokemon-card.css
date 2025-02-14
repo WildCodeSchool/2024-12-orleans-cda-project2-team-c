@@ -43,10 +43,6 @@
   width: 70%;
 }
 
-.pokemon-card__title::first-letter {
-  text-transform: capitalize;
-}
-
 .pokemon-card__types-container {
   display: flex;
   gap: 8px;

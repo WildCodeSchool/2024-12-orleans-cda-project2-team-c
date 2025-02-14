@@ -59,7 +59,6 @@
 }
 .pokemonImg {
   max-width: 409px;
-
   filter: drop-shadow(rgba(0, 0, 0, 0.25) 0 4px 4px);
 }
 .slide {
@@ -116,10 +115,6 @@
 }
 
 @media screen and (min-width: 571px) and (max-width: 1061px) {
-  .info {
-    margin: 0 auto;
-    align-items: center;
-  }
   .next-btn,
   .prev-btn {
     display: none;
