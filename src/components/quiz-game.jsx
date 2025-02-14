@@ -63,8 +63,12 @@ export default function QuizGame({ game, setHasFinished }) {
     setHasFinished(true);
     const storedPokedex = JSON.parse(localStorage.getItem('result')) || [];
     const myPokedex = new Set(storedPokedex);
+
     game.rounds.forEach((round) => {
       if (round.isValid) {
+        if (!storedPokedex.includes(round.id)) {
+          round.new = true;
+        }
         myPokedex.add(round.id);
       }
     });
@@ -105,7 +109,7 @@ export default function QuizGame({ game, setHasFinished }) {
   return (
     <section className='quiz-section quiz-section--game'>
       <h1>
-        <span>{questionNumber + 1}/10</span> - Which pokémon is it ?
+        <span>{questionNumber + 1}/10</span> Which pokémon is it ?
       </h1>
 
       {/* hints */}
@@ -127,7 +131,7 @@ export default function QuizGame({ game, setHasFinished }) {
         <Button
           className={usedHints[1] ? 'button--disabled' : 'button--red'}
           onClick={() => handleClickHintBtn(1)}
-          disabled={usedHints[1]}
+          disabled={usedHints[1] || clickedButton || !timerIsRunning}
         >
           Hint 2
         </Button>
@@ -159,16 +163,20 @@ export default function QuizGame({ game, setHasFinished }) {
             <Button
               key={answer.id}
               className={`capital ${
+                // timerIsRunning && !clickedButton ?
                 clickedButton
                   ? clickedButton === answer.id
                     ? isAnswerRight
                       ? 'button--success'
                       : 'button--red'
                     : 'button--disabled'
-                  : 'button--yellow'
+                  : timerIsRunning
+                  ? 'button--yellow'
+                  : 'button--disabled'
+                // : 'button--disabled'
               }`}
               onClick={() => endRound(answer.id)}
-              disabled={clickedButton}
+              disabled={clickedButton || !timerIsRunning}
             >
               {answer.value.replace(/-/g, ' ')}
             </Button>

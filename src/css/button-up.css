@@ -14,9 +14,17 @@
   bottom: 16%;
   background-color: var(--yellow);
 }
+
 @media screen and (max-width: 331px) {
   .button-up,
   .circle {
     right: 4%;
+  }
+}
+
+@media screen and (max-width: 640px) {
+  .button-up,
+  .circle {
+    bottom: 200px;
   }
 }

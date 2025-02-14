@@ -8,7 +8,6 @@ export default function SearchSection({ title }) {
   const [searchBy, setSearchBy] = useState('name');
   const [types, setTypes] = useState([]);
   const [searchValue, setSearchValue] = useState('');
-  const [clickName, setClickName] = useState('');
 
   const handelRadio = (event) => {
     setSearchBy(event.target.value);
@@ -86,14 +85,7 @@ export default function SearchSection({ title }) {
                   .filter((name) => name.match(new RegExp(`^${searchValue}`, 'i')))
                   .map((name) => {
                     return (
-                      <Link
-                        to={'/pokemon/' + name}
-                        key={name}
-                        name={name}
-                        className='poke-name capital'
-                        value={clickName}
-                        onClick={() => setClickName(name)}
-                      >
+                      <Link to={'/pokemon/' + name} key={name} name={name} className='poke-name capital'>
                         {name}
                       </Link>
                     );

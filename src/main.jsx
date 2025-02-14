@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import { RouterProvider, createBrowserRouter } from 'react-router-dom';
+import { RouterProvider, createBrowserRouter, redirect } from 'react-router-dom';
 
 import App from './App';
 import './main.css';
@@ -50,15 +50,16 @@ const router = createBrowserRouter([
         },
       },
       {
-        path: 'pokemon/:id',
+        path: 'pokemon/:param',
         element: <PokemonDisplay />,
-        loader: (route) => {
-          const id = route.params.id;
-          return Promise.all([
-            ApiConnection.getOnePokemonById(route.params.id),
-            ApiConnection.getOnePokemonById((id % 1025) + 1),
-            ApiConnection.getOnePokemonById((id - 1 + 1025) % 1025 || 1025),
-          ]);
+        loader: async (route) => {
+          const param = route.params.param;
+          const response = await ApiConnection.getPokemon(param);
+          if (response) {
+            return response;
+          } else {
+            return redirect('/404');
+          }
         },
       },
       {

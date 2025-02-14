@@ -5,6 +5,7 @@ export default class Round {
     this.picture = pokemon.sprites.other['official-artwork'].front_default;
     this.types = [];
     this.penalty = 0;
+    this.new = false;
     pokemon.types.forEach((type) => {
       this.types.push(type.type.name);
     });

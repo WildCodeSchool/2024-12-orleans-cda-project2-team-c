@@ -55,7 +55,6 @@ body {
   background: var(--white);
   color: var(--black);
   font-family: var(--ff-main);
-  background: url('/bg-pattern-1.png') repeat;
 }
 
 #root {
@@ -65,6 +64,14 @@ body {
 }
 main {
   padding: 64px 16px 64px;
+}
+
+.main-bg--1 {
+  background: url('/bg-pattern-1.png') repeat;
+}
+
+.main-bg--2 {
+  background: url('/bg-pattern-2.png') repeat;
 }
 
 h1,
@@ -92,11 +99,4 @@ h2 {
 
 .capital {
   text-transform: capitalize;
-}
-
-p,
-h1,
-h2,
-h3 {
-  cursor: default;
 }
