@@ -8,9 +8,7 @@ function StatBar({ stats }) {
       {Array.from(new Array(10)).map((element, i) => {
         return <div className={i < 10 - nbGreen ? 'stats-enable' : 'stats-valid'} key={i}></div>;
       })}
-      <figcaption className='stat-name'>
-        {stats.stat.name.charAt(0).toUpperCase() + stats.stat.name.slice(1)}
-      </figcaption>
+      <figcaption className='stat-name capital'>{stats.stat.name}</figcaption>
     </figure>
   );
 }
