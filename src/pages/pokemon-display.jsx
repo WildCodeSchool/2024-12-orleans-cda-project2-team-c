@@ -5,41 +5,20 @@ import sound from '../assets/icons/sound-blue.png';
 import Badge from '../components/badge-type';
 import Button from '../components/button';
 import '../css/pokemon-display.css';
-
-const typeWeaknesses = {
-  steel: ['fire', 'fighting', 'ground'],
-  fighting: ['flying', 'psychic', 'fairy'],
-  dragon: ['ice', 'dragon', 'fairy'],
-  water: ['electric', 'grass'],
-  fire: ['water', 'ground', 'rock'],
-  electric: ['ground'],
-  fairy: ['poison', 'steel'],
-  ice: ['fire', 'fighting', 'rock', 'steel'],
-  bug: ['fire', 'flying', 'rock'],
-  normal: ['fighting'],
-  grass: ['fire', 'ice', 'poison', 'bug'],
-  poison: ['ground', 'psychic'],
-  psychic: ['bug', 'ghost', 'dark'],
-  rock: ['water', 'grass', 'fighting', 'ground', 'steel'],
-  ground: ['water', 'grass', 'ice'],
-  ghost: ['ghost', 'dark'],
-  dark: ['fighting', 'bug', 'fairy'],
-  flying: ['electric', 'ice', 'rock'],
-};
+import { typeWeaknesses } from '../utils/types';
 
 export default function PokemonDisplay() {
   const [pokemon, nextPokemon, prevPokemon] = useLoaderData();
   const audioRef = useRef(null);
 
   return (
+    // card **************************************************
     <section className='pokemon-display'>
       <Button link={true} href={'/pokelist'} className={'button button--red'}>
-        {' '}
-        {'<  Back to Pokélist'}{' '}
+        {'<  Back to Pokélist'}
       </Button>
-
-      <div className='pokemon-container'>
-        <p>
+      <article className='pokemon-container'>
+        <p className='pokemon-display__id'>
           {pokemon.id.toString().length === 4 ? pokemon.id : '0'.repeat(3 - pokemon.id.toString().length) + pokemon.id}
         </p>
         <div className='left'>
@@ -51,18 +30,18 @@ export default function PokemonDisplay() {
           </div>
           <div className='column1'>
             <div className='item'>
-              <h3 className='item-title'>Base stats</h3>
+              <h2 className='item-title'>Base stats</h2>
               {pokemon.stats.map((stat, index) => {
                 return (
                   <p key={index} className='capital'>
-                    {stat.stat.name.replace(/-/g, ' ')} :<strong> {stat.base_stat}</strong>
+                    {stat.stat.name.replace(/-/g, ' ')} : <span className='stat-numbers'>{stat.base_stat}</span>
                   </p>
                 );
               })}
             </div>
 
             <div className='item'>
-              <h3 className='item-title'>Moves</h3>
+              <h2 className='item-title'>Moves</h2>
               <ul className='moves-list'>
                 {pokemon.moves.slice(0, 8).map((move) => {
                   return (
@@ -76,7 +55,7 @@ export default function PokemonDisplay() {
           </div>
           <div className='column2'>
             <div className='item'>
-              <h3 className='item-title'>Abilities</h3>
+              <h2 className='item-title'>Abilities</h2>
               {pokemon.abilities.map((ability, index) => {
                 return (
                   <p key={index} className='capital'>
@@ -87,7 +66,7 @@ export default function PokemonDisplay() {
             </div>
 
             <div className='item item--types'>
-              <h3 className='item-title'>Types</h3>
+              <h2 className='item-title'>Types</h2>
               <div>
                 {pokemon.types.map((type, index) => {
                   return <Badge key={index} typeName={type.type.name} />;
@@ -96,7 +75,7 @@ export default function PokemonDisplay() {
             </div>
 
             <div className='item item--types'>
-              <h3 className='item-title'>Weaknesses</h3>
+              <h2 className='item-title'>Weaknesses</h2>
               <div>
                 {[...new Set(pokemon.types.map((type) => typeWeaknesses[type.type.name] || ['Unknown']).flat())].map(
                   (weakness, index) => (
@@ -113,10 +92,19 @@ export default function PokemonDisplay() {
             src={pokemon.sprites.other['official-artwork'].front_default}
             alt={pokemon.name.replace(/-/g, ' ')}
           />
-          <img src={sound} alt='sound icon' className='sound-icon' onClick={() => audioRef.current.play()} />
+          <button
+            className='sound-btn'
+            onClick={() => audioRef.current.play()}
+            title='Play pokémon cry'
+            aria-label='Play pokémon cry'
+          >
+            <img src={sound} alt='' aria-hidden='true' className='sound-icon' />
+          </button>
           <audio src={pokemon.cries.latest} ref={audioRef}></audio>
         </div>
-      </div>
+      </article>
+
+      {/* navigation ************************************************** */}
       <div className='pokelist-navigation'>
         <Link to={`/pokemon/${prevPokemon.id}`} className='arrow-button left-arrow arrow'>
           <h2 className='capital'>{prevPokemon.name.replace(/-/g, ' ')}</h2>

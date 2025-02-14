@@ -65,8 +65,8 @@ export default function SearchSection({ title }) {
         {searchBy === 'type' ? (
           <select className='types-list'>
             {types.map((type) => (
-              <option key={type.id} value={type.name}>
-                {type.name.charAt(0).toUpperCase() + type.name.slice(1)}
+              <option key={type.id} value={type.name} className='capital'>
+                {type.name}
               </option>
             ))}
           </select>

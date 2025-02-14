@@ -12,6 +12,7 @@ export default function Header() {
   function openClick() {
     setIsActive(() => !isActive);
   }
+
   return (
     <header>
       <a href='/' aria-label='Go back to the homepage' title='Go back to the homepage' className='header__logo'>
@@ -21,9 +22,10 @@ export default function Header() {
       <button
         type='button'
         className='mobile-navigation__toggler'
-        aria-label='Open navigation menu'
-        title='Open navigation title'
+        title={isActive ? 'Close navigation menu' : 'Open navigation menu'}
+        aria-label={isActive ? 'Close navigation menu' : 'Open navigation menu'}
         aria-controls='main-navigation'
+        aria-expanded={isActive ? 'true' : 'false'}
         onClick={openClick}
       >
         <img src={isActive ? close : menuIcon} alt='' aria-hidden='true' />
@@ -34,13 +36,13 @@ export default function Header() {
         id='main-navigation'
         onClick={openClick}
       >
-        <Button link={true} href='/pokelist' className='button--yellow'>
+        <Button link={true} href='/pokelist' className='button--yellow' title='Browse Pokémon list'>
           PokéList
         </Button>
-        <Button link={true} href='/pokedex' className='button--yellow'>
+        <Button link={true} href='/pokedex' className='button--yellow' title='See my Pokédex'>
           My Pokédex
         </Button>
-        <Button link={true} href='/quiz' className='button--yellow'>
+        <Button link={true} href='/quiz' className='button--yellow' title='Play quiz'>
           Quiz
         </Button>
       </nav>

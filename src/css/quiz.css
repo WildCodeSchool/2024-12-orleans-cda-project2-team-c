@@ -1,4 +1,4 @@
-/* global */
+/* global ************************************************** */
 .quiz-section img {
   pointer-events: none;
 }
@@ -11,7 +11,7 @@
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.25);
 }
 
-/* start */
+/* start ************************************************** */
 .quiz-section--start {
   max-width: 800px;
 }
@@ -50,7 +50,7 @@
   margin-inline: auto;
 }
 
-/* game */
+/* game ************************************************** */
 .quiz-section--game {
   max-width: 1045px;
   display: grid;
@@ -100,8 +100,7 @@
   justify-content: center;
 }
 
-/* results */
-
+/* results ************************************************** */
 .quiz-section--result {
   max-width: 956px;
   display: flex;
@@ -146,6 +145,7 @@
 
 .pokemon-img--disabled {
   filter: brightness(0);
+  pointer-events: none;
 }
 
 .right-answer {
@@ -183,16 +183,14 @@
   font-weight: 400;
 }
 
-.pokemon-name {
+.result-item__pokemon-name {
   font-size: var(--fz-18);
   font-weight: 700;
   max-width: 140px;
 }
 
-@media screen and (max-width: 440px) {
-  .result-item--img {
-    width: 100%;
-  }
+.quiz-result__button-up {
+  display: none;
 }
 
 @media screen and (max-width: 760px) {
@@ -229,5 +227,15 @@
   }
   .quiz-option > .button {
     line-clamp: 3;
+  }
+}
+
+@media screen and (max-width: 440px) {
+  .result-item--img {
+    width: 100%;
+  }
+
+  .quiz-result__button-up {
+    display: flex;
   }
 }
