@@ -87,7 +87,7 @@ export default function SearchSection({ title }) {
                   .map((name) => {
                     return (
                       <Link
-                        to={'/pokemon/' + clickName}
+                        to={'/pokemon/' + name}
                         key={name}
                         name={name}
                         className='poke-name capital'
