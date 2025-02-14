@@ -36,13 +36,13 @@ export default function Header() {
         id='main-navigation'
         onClick={openClick}
       >
-        <Button link={true} href='/pokelist' className='button--yellow' title='Browse Pokémon list'>
+        <Button link href='/pokelist' className='button--yellow' title='Browse Pokémon list'>
           PokéList
         </Button>
-        <Button link={true} href='/pokedex' className='button--yellow' title='See my Pokédex'>
+        <Button link href='/pokedex' className='button--yellow' title='See my Pokédex'>
           My Pokédex
         </Button>
-        <Button link={true} href='/quiz' className='button--yellow' title='Play quiz'>
+        <Button link href='/quiz' className='button--yellow' title='Play quiz'>
           Quiz
         </Button>
       </nav>
