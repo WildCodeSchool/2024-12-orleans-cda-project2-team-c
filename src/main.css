@@ -1,0 +1,109 @@
+/* reset */
+*,
+::before,
+::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+img {
+  display: block;
+}
+
+button {
+  font-family: inherit;
+  color: inherit;
+  cursor: pointer;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* variables */
+:root {
+  /* colors */
+  --yellow: #ffcc03;
+  --blue-dark: #101e36;
+  --blue-button: #386abb;
+  --black: #1c1c1c;
+  --white: #f7f7ff;
+  --grey: #f2f2f2;
+  --grey-dark: #979797;
+  --text-hint: #726f6f;
+  --danger: #f12838;
+  --warning: #ffa037;
+  --success: #41e549;
+  --id-number: #d6cbcb;
+
+  /* fonts */
+  --ff-main: 'Open Sans', serif;
+  --ff-title: 'Open Sans', serif;
+
+  /* font-sizes */
+  --fz-16: 1rem;
+  --fz-18: 1.125rem;
+  --fz-24: 1.5rem;
+  --fz-32: 2rem;
+  --fz-64: 4rem;
+}
+
+/* general */
+body {
+  background: var(--white);
+  color: var(--black);
+  font-family: var(--ff-main);
+}
+
+#root {
+  min-height: 100vh;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+}
+main {
+  padding: 64px 16px 64px;
+}
+
+.main-bg--1 {
+  background: url('/bg-pattern-1.png') repeat;
+}
+
+.main-bg--2 {
+  background: url('/bg-pattern-2.png') repeat;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--ff-title);
+}
+
+h1 {
+  font-size: var(--fz-32);
+  font-weight: 700;
+  text-align: center;
+}
+
+h2 {
+  font-size: var(--fz-24);
+}
+
+/* utils */
+.center {
+  margin-inline: auto;
+}
+
+.capital {
+  text-transform: capitalize;
+}
+
+@media screen and (max-width: 760px) {
+  main {
+    padding: 32px 16px 32px;
+  }
+}

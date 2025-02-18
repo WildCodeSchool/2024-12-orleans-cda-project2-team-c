@@ -1,0 +1,256 @@
+.pokemon-display {
+  max-width: 1045px;
+  width: 100%;
+  margin-inline: auto;
+}
+
+.pokemon-container {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr;
+  gap: 16px;
+  width: 100%;
+  background-color: var(--grey);
+  margin-top: 16px;
+  margin-bottom: 16px;
+  border-radius: 8px;
+  filter: drop-shadow(rgba(0, 0, 0, 0.25) 0 4px 8px);
+  padding: 16px;
+}
+
+.pokemon-display__id {
+  position: absolute;
+  right: 150px;
+  line-height: 0.8;
+  width: 100%;
+  text-align: center;
+  color: var(--id-number);
+  font-size: clamp(88px, 23.8vw, 256px);
+  font-weight: 900;
+  width: fit-content;
+}
+
+.left {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  z-index: 1;
+  margin-inline: auto;
+  min-width: 500px;
+}
+
+.left-top {
+  grid-column: span 2;
+}
+
+.right {
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  margin-inline: auto;
+}
+
+.item-title {
+  margin-bottom: 8px;
+  font-size: var(--fz-18);
+}
+
+.item {
+  margin-bottom: 16px;
+}
+
+.column2 > .item:nth-child(2) > div,
+.column2 > .item:nth-child(3) > div {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  width: 100%;
+}
+
+.stat-numbers {
+  font-weight: 700;
+}
+
+.moves-list {
+  margin-left: 16px;
+}
+
+.artwork {
+  filter: drop-shadow(rgba(0, 0, 0, 0.25) 0 4px 4px);
+  max-width: 100%;
+}
+
+.sound-btn {
+  width: 2rem;
+  border-radius: 50%;
+  background-color: var(--white);
+  box-shadow: 0px 2px 7px rgba(0, 0, 0, 0.5);
+  padding: 4px;
+  border: none;
+}
+
+.sound-btn:active {
+  box-shadow: inset 0px 2px 4px rgba(0, 0, 0, 0.25);
+}
+
+.sound-icon {
+  width: 100%;
+}
+
+.pokelist-navigation {
+  display: flex;
+  gap: 16px;
+  margin-bottom: 42px;
+  width: 100%;
+}
+
+.arrow-button {
+  width: 100%;
+  height: 112px;
+  background-color: var(--grey);
+  font-size: 16px;
+  font-weight: 700;
+  text-align: center;
+  line-height: 50px;
+  border-radius: 8px;
+  cursor: pointer;
+  overflow: hidden;
+  border: none;
+  background: linear-gradient(to top, #e0e0e0, #ffffff);
+}
+
+.arrow-button > h2 {
+  font-size: var(--fz-18);
+  text-wrap: wrap;
+}
+
+.arrow-button > p {
+  text-align: center;
+  color: var(--id-number);
+  font-size: clamp(32px, 10vw, 128px);
+  font-weight: 900;
+  margin-bottom: 8px;
+  padding: 4px;
+}
+
+.arrow {
+  display: flex;
+  align-items: center;
+  gap: 6%;
+}
+
+.right-arrow {
+  justify-content: flex-start;
+  clip-path: polygon(90% 0, 100% 50%, 90% 100%, 0% 100%, 0 50%, 0% 0%);
+}
+
+.left-arrow {
+  justify-content: flex-end;
+  clip-path: polygon(100% 0%, 100% 50%, 100% 100%, 10% 100%, 0% 50%, 10% 0);
+}
+
+.left-top > h1 {
+  text-align: left;
+}
+
+@media screen and (max-width: 1075px) {
+  .pokemon-display {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .pokemon-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 16px;
+  }
+
+  .right {
+    order: 1;
+    gap: 16px;
+  }
+
+  .left {
+    order: 2;
+    min-width: unset;
+  }
+
+  .pokemon-display__id {
+    right: 50%;
+    transform: translateX(50%);
+  }
+
+  .column1,
+  .column2 {
+    display: flex;
+    flex-direction: column;
+    order: 3;
+  }
+
+  .artwork {
+    margin-top: 64px;
+  }
+
+  .left-top {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .left-top > p {
+    order: 2;
+  }
+
+  .arrow {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    flex-direction: column;
+    gap: 0px;
+  }
+
+  .arrow-button > p {
+    font-weight: 900;
+    margin-bottom: 8px;
+  }
+
+  .left-arrow h2 {
+    order: 2;
+  }
+
+  .pokemon-container .capital {
+    order: 2;
+    padding: 8px;
+    line-height: 0.8;
+  }
+}
+
+@media screen and (max-width: 680px) {
+  .left {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .column2 {
+    order: 1;
+  }
+
+  .arrow-button > h2 {
+    font-size: 16px;
+  }
+
+  .column2 > .item:nth-child(2) > div,
+  .column2 > .item:nth-child(3) > div {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+
+  .arrow-button > h2 {
+    font-style: 16px;
+  }
+}

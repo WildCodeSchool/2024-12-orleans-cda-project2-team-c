@@ -1,0 +1,24 @@
+.stats-valid {
+  background-color: var(--success);
+  height: 13px;
+  width: 100%;
+}
+.stats-enable {
+  background-color: #fff;
+  height: 13px;
+  width: 100%;
+}
+.stats {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  width: 100%;
+}
+.stats-content {
+  gap: 5px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+}
+.stat-name {
+  text-align: center;
+}

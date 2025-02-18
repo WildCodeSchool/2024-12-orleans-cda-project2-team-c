@@ -1,0 +1,30 @@
+.button-up {
+  position: fixed;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--yellow);
+  width: 48px;
+  height: 48px;
+  border: none;
+  border-radius: 50%;
+  right: 2.5%;
+  bottom: 16%;
+  cursor: pointer;
+}
+
+.button-up__icon {
+  width: 32px;
+}
+
+@media screen and (max-width: 331px) {
+  .button-up {
+    right: 4%;
+  }
+}
+
+@media screen and (max-width: 640px) {
+  .button-up {
+    bottom: 200px;
+  }
+}
