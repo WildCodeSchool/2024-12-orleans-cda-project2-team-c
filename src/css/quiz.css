@@ -65,7 +65,6 @@
 .quiz-options {
   grid-column: span 3;
 }
-
 .quiz-section--game h1 span,
 .quiz-section--game h2 span {
   font-weight: 400;
