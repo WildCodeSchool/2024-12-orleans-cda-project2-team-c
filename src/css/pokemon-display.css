@@ -122,6 +122,11 @@
   background: linear-gradient(to top, #e0e0e0, #ffffff);
 }
 
+.arrow-button > h2 {
+  font-size: var(--fz-18);
+  text-wrap: wrap;
+}
+
 .arrow-button > p {
   text-align: center;
   color: var(--id-number);
@@ -133,8 +138,8 @@
 
 .arrow {
   display: flex;
-  gap: 10%;
   align-items: center;
+  gap: 6%;
 }
 
 .right-arrow {
@@ -243,5 +248,9 @@
     width: 100%;
     display: flex;
     justify-content: center;
+  }
+
+  .arrow-button > h2 {
+    font-style: 16px;
   }
 }
