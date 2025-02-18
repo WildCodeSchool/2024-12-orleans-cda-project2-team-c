@@ -1,13 +1,16 @@
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 
 import close from '../assets/icons/close-blue.png';
 import menuIcon from '../assets/icons/menu-dots-blue.png';
 import logo from '../assets/images/pokexplorer-logo.png';
 import '../css/header.css';
+import pokemonNames from '../utils/pokemon-names';
 import Button from './button';
 
 export default function Header() {
   const [isActive, setIsActive] = useState(false);
+  const [searchValue, setSearchValue] = useState('');
 
   function openClick() {
     setIsActive(() => !isActive);
@@ -36,6 +39,37 @@ export default function Header() {
         id='main-navigation'
         onClick={openClick}
       >
+        <form role='search'>
+          <div className='poke-position'>
+            <input
+              className='search-by-name-inupt'
+              type='text'
+              placeholder='Enter a Pokémon name'
+              value={searchValue}
+              onChange={(e) => setSearchValue(e.target.value)}
+            />
+            <ul className='poke-list'>
+              {searchValue &&
+                pokemonNames
+                  .filter((name) => name.match(new RegExp(`^${searchValue}`, 'i')))
+                  .map((name) => {
+                    return (
+                      <Link
+                        to={'/pokemon/' + name.replaceAll(/\W/g, '-').replaceAll(/--/g, '-')}
+                        key={name}
+                        name={name}
+                        className='poke-name capital'
+                        onClick={() => {
+                          setSearchValue('');
+                        }}
+                      >
+                        {name}
+                      </Link>
+                    );
+                  })}
+            </ul>
+          </div>
+        </form>
         <Button link href='/pokelist' className='button--yellow' title='Browse Pokémon list'>
           PokéList
         </Button>
