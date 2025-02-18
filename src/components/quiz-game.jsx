@@ -128,6 +128,7 @@ export default function QuizGame({ game, setHasFinished }) {
 
           {areTypesVisible && game.rounds[questionNumber].types.map((type, i) => <Badge typeName={type} key={i} />)}
         </div>
+
         <Button
           className={usedHints[1] ? 'button--disabled' : 'button--red'}
           onClick={() => handleClickHintBtn(1)}
@@ -163,7 +164,6 @@ export default function QuizGame({ game, setHasFinished }) {
             <Button
               key={answer.id}
               className={`capital ${
-                // timerIsRunning && !clickedButton ?
                 clickedButton
                   ? clickedButton === answer.id
                     ? isAnswerRight
@@ -173,7 +173,6 @@ export default function QuizGame({ game, setHasFinished }) {
                   : timerIsRunning
                   ? 'button--yellow'
                   : 'button--disabled'
-                // : 'button--disabled'
               }`}
               onClick={() => endRound(answer.id)}
               disabled={clickedButton || !timerIsRunning}

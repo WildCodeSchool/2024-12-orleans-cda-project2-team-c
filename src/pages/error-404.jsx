@@ -6,8 +6,7 @@ export default function Error404() {
   return (
     <>
       <Button link href={'/pokelist'} className={'button button--red'}>
-        {' '}
-        {'<  Back to Pokélist'}{' '}
+        {'<  Back to Pokélist'}
       </Button>
       <section className='error-container'>
         <p className='error-404'>404</p>
