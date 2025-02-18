@@ -121,7 +121,7 @@ export default function QuizGame({ game, setHasFinished }) {
         <Button
           className={usedHints[0] ? 'button--disabled' : 'button--red'}
           onClick={() => handleClickHintBtn(0)}
-          disabled={usedHints[0]}
+          disabled={usedHints[0] || clickedButton || !timerIsRunning}
         >
           Hint 1
         </Button>
@@ -163,7 +163,6 @@ export default function QuizGame({ game, setHasFinished }) {
             <Button
               key={answer.id}
               className={`capital ${
-                // timerIsRunning && !clickedButton ?
                 clickedButton
                   ? clickedButton === answer.id
                     ? isAnswerRight
@@ -173,7 +172,6 @@ export default function QuizGame({ game, setHasFinished }) {
                   : timerIsRunning
                   ? 'button--yellow'
                   : 'button--disabled'
-                // : 'button--disabled'
               }`}
               onClick={() => endRound(answer.id)}
               disabled={clickedButton || !timerIsRunning}

@@ -23,7 +23,7 @@ export default class Game {
     pokemon.wrongValues = [];
     while (pokemon.wrongValues.length < 2) {
       const value = wrongValues[Math.floor(Math.random() * wrongValues.length)];
-      if (value !== pokemon.name) {
+      if (value.toLOwerCase().replaceAll(/\W/g, '-').replaceAll(/--/g, '-') !== pokemon.name) {
         pokemon.wrongValues.push(value);
       }
     }
