@@ -5,7 +5,6 @@ import Button from '../components/button';
 import ButtonUp from '../components/button-up';
 import Loader from '../components/loader';
 import PokemonCard from '../components/pokemon-card';
-import SearchSection from '../components/search-section';
 import '../css/pokemon-list.css';
 import ApiConnection from '../utils/api-connection';
 
@@ -27,9 +26,11 @@ export default function PokemonList() {
 
   return (
     <>
+      <div className='top-container'>
+        <h1>Pokélist</h1>
+        <p className='pokelist-phrase'>Explore the ultimate PokéList with every Pokémon at your fingertips!</p>
+      </div>
       <section className='pokemon-section'>
-        <SearchSection title='Pokélist' />
-
         <div className='pokemon-list'>
           {pokemons.length ? (
             pokemons.map((pokemon) => {

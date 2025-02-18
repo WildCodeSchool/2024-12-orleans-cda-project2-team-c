@@ -5,6 +5,7 @@ header {
   background-color: var(--white);
   display: flex;
   justify-content: space-between;
+  align-items: center;
   position: relative;
 }
 
@@ -28,6 +29,42 @@ header::after {
 
 .header__logo img {
   width: 100%;
+}
+
+.search-by-name-inupt {
+  min-height: 36px;
+  padding: 4px 8px;
+  border: 2px solid #ddd;
+  border-radius: 10px;
+  font-size: 16px;
+  outline: none;
+  width: 200px;
+}
+
+.poke-list {
+  position: absolute;
+  background-color: var(--white);
+  bottom: 0;
+  width: 100%;
+  max-height: 224px;
+  overflow-y: auto;
+  transform: translateY(100%);
+}
+
+.poke-name {
+  background-color: var(--white);
+  width: 100%;
+  padding: 8px 12px;
+  display: block;
+  transition: filter 0.15s ease-out;
+}
+
+.poke-name:hover {
+  filter: brightness(0.95);
+}
+
+.poke-position {
+  position: relative;
 }
 
 .mobile-navigation__toggler {
@@ -79,5 +116,11 @@ header::after {
 
   .mobile-navigation__toggler {
     display: block;
+  }
+}
+
+@media (max-width: 380px) {
+  .search-by-name-inupt {
+    width: 150px;
   }
 }

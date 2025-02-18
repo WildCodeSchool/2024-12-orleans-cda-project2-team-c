@@ -3,7 +3,6 @@ import { useLoaderData } from 'react-router-dom';
 import Button from '../components/button';
 import ButtonUp from '../components/button-up';
 import PokemonCard from '../components/pokemon-card';
-import SearchSection from '../components/search-section';
 import '../css/pokemon-list.css';
 
 export default function Pokedex() {
@@ -14,8 +13,11 @@ export default function Pokedex() {
 
   return (
     <>
+      <div className='top-container'>
+        <h1>Pokédex</h1>
+        <p className='pokemon-count'>{myPokemons.length}/1025</p>
+      </div>
       <section className='pokemon-section'>
-        <SearchSection title='Pokédex' />
         {myPokemons.length > 0 ? (
           <ul className='pokemon-list'>
             {myPokemons.map((pokemon) => {
