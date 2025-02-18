@@ -58,6 +58,7 @@
 }
 .quiz-picture {
   max-width: 100%;
+  margin: 0 auto;
 }
 
 .quiz-section--game h1,
@@ -80,6 +81,7 @@
   flex-direction: column;
   align-items: center;
   gap: 16px;
+  min-width: 220px;
 }
 
 .quiz-picture--hidden {
@@ -98,6 +100,7 @@
   display: flex;
   gap: 16px;
   justify-content: center;
+  margin-top: 8px;
 }
 
 /* results ************************************************** */
@@ -195,38 +198,82 @@
 
 @media screen and (max-width: 760px) {
   .quiz-section--game {
-    grid-template-rows: repeat(5, auto);
+    grid-template-rows: repeat(6, auto);
     grid-template-columns: 1fr;
+
+    width: 100%;
+  }
+  .quiz-section p {
+    margin-bottom: 0;
   }
 
-  h1 {
+  .quiz-section h1 {
     display: flex;
     flex-direction: column;
+    margin: 0 auto;
+    font-size: 18px;
     grid-row: 1;
+    margin-bottom: 10px;
   }
   .hints-container {
-    grid-row: 5;
+    grid-row: 3;
+
     margin: 0 auto;
     display: flex;
+    flex-direction: row;
+    border: none;
+    box-shadow: none;
+    padding: 0;
+  }
+
+  .hints-container > h2 {
+    order: 2;
+    font-size: var(--fz-18);
+    display: flex;
+  }
+  .hints-container .button:nth-child(3) {
+    order: 3;
+  }
+  .button {
+    font-size: auto;
+    padding: 4px 8px;
+    margin-bottom: 2px;
+    position: relative;
   }
   .quiz-picture {
-    grid-row: 3;
+    grid-row: 4;
+
     margin: 0 auto;
+    max-width: 175px;
   }
   .quiz-data {
     grid-row: 2;
+    min-height: 33px;
+    display: flex;
+    flex-direction: row;
+    max-width: 100%;
     justify-content: center;
     margin: 0 auto;
+    padding: 0;
+    border: none;
+    box-shadow: none;
+    margin-bottom: 12px;
   }
   .quiz-options {
+    grid-row: 5;
     display: flex;
     flex-direction: column;
     margin: 0 auto;
     align-items: center;
-    margin-bottom: 32px;
   }
   .quiz-option > .button {
     line-clamp: 3;
+  }
+  .badge {
+    padding: none;
+    font-size: 12px;
+    padding: 4px 8px;
+    position: absolute;
   }
 }
 
@@ -237,5 +284,10 @@
 
   .quiz-result__button-up {
     display: flex;
+  }
+}
+@media screen and (max-width: 600px) {
+  .hints-container {
+    border: none;
   }
 }

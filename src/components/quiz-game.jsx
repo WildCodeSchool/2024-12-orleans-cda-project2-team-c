@@ -117,17 +117,17 @@ export default function QuizGame({ game, setHasFinished }) {
         <h2>
           Hints <span>({2 - game.rounds[questionNumber].penalty}/2)</span>
         </h2>
+        <div>
+          <Button
+            className={usedHints[0] ? 'button--disabled' : 'button--red'}
+            onClick={() => handleClickHintBtn(0)}
+            disabled={usedHints[0]}
+          >
+            Hint 1
+          </Button>
 
-        <Button
-          className={usedHints[0] ? 'button--disabled' : 'button--red'}
-          onClick={() => handleClickHintBtn(0)}
-          disabled={usedHints[0]}
-        >
-          Hint 1
-        </Button>
-
-        {areTypesVisible && game.rounds[questionNumber].types.map((type, i) => <Badge typeName={type} key={i} />)}
-
+          {areTypesVisible && game.rounds[questionNumber].types.map((type, i) => <Badge typeName={type} key={i} />)}
+        </div>
         <Button
           className={usedHints[1] ? 'button--disabled' : 'button--red'}
           onClick={() => handleClickHintBtn(1)}
