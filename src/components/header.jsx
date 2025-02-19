@@ -55,9 +55,7 @@ export default function Header() {
                         key={name}
                         name={name}
                         className='poke-name capital'
-                        onClick={() => {
-                          setSearchValue('');
-                        }}
+                        onClick={openClick}
                       >
                         {name}
                       </Link>
