@@ -42,6 +42,7 @@ header::after {
 }
 
 .poke-list {
+  z-index: 150;
   position: absolute;
   background-color: var(--white);
   bottom: 0;

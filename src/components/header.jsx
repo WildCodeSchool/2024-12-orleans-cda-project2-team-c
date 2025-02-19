@@ -18,9 +18,9 @@ export default function Header() {
 
   return (
     <header>
-      <a href='/' aria-label='Go back to the homepage' title='Go back to the homepage' className='header__logo'>
+      <Link to='/' aria-label='Go back to the homepage' title='Go back to the homepage' className='header__logo'>
         <img src={logo} alt='' aria-hidden='true' />
-      </a>
+      </Link>
 
       <button
         type='button'
@@ -34,11 +34,7 @@ export default function Header() {
         <img src={isActive ? close : menuIcon} alt='' aria-hidden='true' />
       </button>
 
-      <nav
-        className={`main-navigation ${isActive ? 'main-navigation--active' : ''} `}
-        id='main-navigation'
-        onClick={openClick}
-      >
+      <nav className={`main-navigation ${isActive ? 'main-navigation--active' : ''} `} id='main-navigation'>
         <form role='search'>
           <div className='poke-position'>
             <input
