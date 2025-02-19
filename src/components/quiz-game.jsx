@@ -125,8 +125,9 @@ export default function QuizGame({ game, setHasFinished }) {
           >
             Hint 1
           </Button>
-
-          {areTypesVisible && game.rounds[questionNumber].types.map((type, i) => <Badge typeName={type} key={i} />)}
+          <div className='badge-div'>
+            {areTypesVisible && game.rounds[questionNumber].types.map((type, i) => <Badge typeName={type} key={i} />)}
+          </div>
         </div>
 
         <Button

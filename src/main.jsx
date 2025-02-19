@@ -16,62 +16,65 @@ async function getPokemons() {
   return await ApiConnection.getPokemonPage();
 }
 
-const router = createBrowserRouter([
-  {
-    element: <App />,
-    children: [
-      {
-        path: '/',
-        element: <Home />,
-        loader: () => {
-          return getPokemons();
+const router = createBrowserRouter(
+  [
+    {
+      element: <App />,
+      children: [
+        {
+          path: '/',
+          element: <Home />,
+          loader: () => {
+            return getPokemons();
+          },
         },
-      },
-      {
-        path: 'pokelist',
-        element: <PokemonList />,
-        loader: () => {
-          return ApiConnection.getPokemonPage();
+        {
+          path: 'pokelist',
+          element: <PokemonList />,
+          loader: () => {
+            return ApiConnection.getPokemonPage();
+          },
         },
-      },
-      {
-        path: 'pokedex',
-        element: <Pokedex />,
-        loader: () => {
-          const stockPokemon = localStorage.getItem('result');
-          if (stockPokemon) {
-            const myPokemons = JSON.parse(stockPokemon).sort((a, b) => a - b);
-            return Promise.all(myPokemons.map((myPokemon) => ApiConnection.getOnePokemonById(myPokemon)));
-          }
+        {
+          path: 'pokedex',
+          element: <Pokedex />,
+          loader: () => {
+            const stockPokemon = localStorage.getItem('result');
+            if (stockPokemon) {
+              const myPokemons = JSON.parse(stockPokemon).sort((a, b) => a - b);
+              return Promise.all(myPokemons.map((myPokemon) => ApiConnection.getOnePokemonById(myPokemon)));
+            }
+          },
         },
-      },
-      {
-        path: 'pokemon/:param',
-        element: <PokemonDisplay />,
-        loader: async (route) => {
-          const param = route.params.param;
-          const response = await ApiConnection.getPokemon(param);
-          if (response) {
-            return response;
-          } else {
-            return redirect('/404');
-          }
+        {
+          path: 'pokemon/:param',
+          element: <PokemonDisplay />,
+          loader: async (route) => {
+            const param = route.params.param;
+            const response = await ApiConnection.getPokemon(param);
+            if (response) {
+              return response;
+            } else {
+              return redirect('/404');
+            }
+          },
         },
-      },
-      {
-        path: 'quiz',
-        element: <Quiz />,
-        loader: () => {
-          return ApiConnection.getQuizPokemons();
+        {
+          path: 'quiz',
+          element: <Quiz />,
+          loader: () => {
+            return ApiConnection.getQuizPokemons();
+          },
         },
-      },
-      {
-        path: '*',
-        element: <Error404 />,
-      },
-    ],
-  },
-]);
+        {
+          path: '*',
+          element: <Error404 />,
+        },
+      ],
+    },
+  ],
+  { basename: import.meta.env.BASE_URL },
+);
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
