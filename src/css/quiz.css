@@ -208,9 +208,6 @@
 
     width: 100%;
   }
-  .quiz-section p {
-    margin-bottom: 0;
-  }
 
   .quiz-section h1 {
     display: flex;
@@ -291,6 +288,10 @@
 
   .quiz-result__button-up {
     display: flex;
+  }
+
+  .result-item__pokemon-name {
+    max-width: 290px;
   }
 }
 @media screen and (max-width: 600px) {

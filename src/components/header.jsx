@@ -13,7 +13,7 @@ export default function Header() {
   const [searchValue, setSearchValue] = useState('');
 
   function openClick() {
-    setIsActive(() => !isActive);
+    setIsActive(() => !isActive, setSearchValue(''));
   }
 
   return (
@@ -66,13 +66,13 @@ export default function Header() {
             </ul>
           </div>
         </form>
-        <Button link href='/pokelist' className='button--yellow' title='Browse Pokémon list'>
+        <Button link href='/pokelist' className='button--yellow' title='Browse Pokémon list' onClick={openClick}>
           PokéList
         </Button>
-        <Button link href='/pokedex' className='button--yellow' title='See my Pokédex'>
+        <Button link href='/pokedex' className='button--yellow' title='See my Pokédex' onClick={openClick}>
           My Pokédex
         </Button>
-        <Button link href='/quiz' className='button--yellow' title='Play quiz'>
+        <Button link href='/quiz' className='button--yellow' title='Play quiz' onClick={openClick}>
           Quiz
         </Button>
       </nav>
