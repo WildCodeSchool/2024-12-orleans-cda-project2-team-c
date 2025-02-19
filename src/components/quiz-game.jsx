@@ -13,10 +13,14 @@ export default function QuizGame({ game, setHasFinished }) {
   const [clickedButton, setClickedButton] = useState(null);
   const [buttonText, setButtonText] = useState(null);
   const isAnswerRight = clickedButton && game.rounds[questionNumber].checkAnswer(clickedButton);
+  const secretCode = '1026';
+  const pressedKeys = [];
 
   // timer managment **************************************************
   useEffect(() => {
     let timerInterval;
+    const controller = new AbortController();
+    const signal = controller.signal;
     if (timer === 0) {
       endRound();
     } else if (timerIsRunning) {
@@ -24,13 +28,16 @@ export default function QuizGame({ game, setHasFinished }) {
         setTimer(timer - 1000);
       }, 1000);
     }
+    window.addEventListener('keyup', (e) => winRound(e.key), { signal: signal });
 
     return () => {
       clearInterval(timerInterval);
+      // window.removeEventListener('keyup', winRound);
+      controller.abort();
     };
   }, [timerIsRunning, timer]);
 
-  // functions **************************************************
+  // game functions **************************************************
   function endRound(id = null) {
     setTimerIsRunning(false);
 
@@ -103,6 +110,16 @@ export default function QuizGame({ game, setHasFinished }) {
 
   function revealBlurredPicture() {
     setPictureState('blurred');
+  }
+
+  // cheat code(s) managment **************************************************
+  function winRound(key) {
+    pressedKeys.push(key);
+    pressedKeys.splice(-secretCode.length - 1, pressedKeys.length - secretCode.length);
+
+    if (pressedKeys.join('') === secretCode) {
+      endRound(game.rounds[questionNumber].answers.find((answer) => answer.isValid).id);
+    }
   }
 
   // markup **************************************************
